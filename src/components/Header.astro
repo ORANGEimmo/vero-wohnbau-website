@@ -102,29 +102,38 @@ const headerStyle = [
     style="background: var(--nav-rule);"
   ></div>
 
-  {/* Mobile drawer */}
-  <div
-    id="mobile-nav"
-    class="hidden fixed inset-0 z-40 flex flex-col items-start justify-center px-8 lg:hidden"
-    style="background: var(--color-tann); color: var(--color-cream);"
-  >
-    <ul class="space-y-6">
-      {nav.map((item) => (
-        <li>
-          <a href={item.href} class="flex items-baseline gap-4 group">
-            <span class="font-mono text-xs" style="color: var(--color-olive-bright);">{item.num}</span>
-            <span
-              class="font-display font-light"
-              style="color: var(--color-cream); font-size: clamp(2rem, 8vw, 3.5rem); line-height: 1;"
-            >
-              {item.label}
-            </span>
-          </a>
-        </li>
-      ))}
-    </ul>
-  </div>
 </header>
+
+{/* Mobile drawer — outside header to avoid backdrop-filter containing block bug */}
+<div
+  id="mobile-nav"
+  class="hidden fixed inset-0 z-50 flex flex-col items-start justify-center px-8 lg:hidden"
+  style="background: var(--color-tann); color: var(--color-cream);"
+>
+  <button
+    id="menu-close"
+    class="absolute top-6 right-6 p-2"
+    aria-label="Menü schließen"
+  >
+    <span class="block w-7 h-px mb-0 rotate-45 translate-y-px" style="background: var(--color-cream);"></span>
+    <span class="block w-7 h-px -rotate-45 -translate-y-px" style="background: var(--color-cream);"></span>
+  </button>
+  <ul class="space-y-6">
+    {nav.map((item) => (
+      <li>
+        <a href={item.href} class="flex items-baseline gap-4 group">
+          <span class="font-mono text-xs" style="color: var(--color-olive-bright);">{item.num}</span>
+          <span
+            class="font-display font-light"
+            style="color: var(--color-cream); font-size: clamp(2rem, 8vw, 3.5rem); line-height: 1;"
+          >
+            {item.label}
+          </span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</div>
 
 <script>
   type NavState = {
@@ -191,12 +200,22 @@ const headerStyle = [
       window.addEventListener("scroll", onScroll, { passive: true });
     }
 
+    const closeDrawer = () => {
+      drawer?.classList.add("hidden");
+      toggle?.setAttribute("aria-expanded", "false");
+      document.body.style.overflow = "";
+    };
+
     if (toggle && drawer) {
       toggle.addEventListener("click", () => {
         const open = drawer.classList.toggle("hidden") === false;
         toggle.setAttribute("aria-expanded", String(open));
         document.body.style.overflow = open ? "hidden" : "";
       });
+
+      document.getElementById("menu-close")?.addEventListener("click", closeDrawer);
+
+      drawer.querySelectorAll("a").forEach(a => a.addEventListener("click", closeDrawer));
     }
   };
 
