@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <rect width="100" height="100" fill="#f0ede4"/>
+  <!-- outer V (dark) -->
+  <path d="M 24 28 L 50 76 L 76 28" stroke="#2a382a" stroke-width="4" stroke-linecap="round" stroke-linejoin="miter" fill="none"/>
+  <!-- inner V (sage) -->
+  <path d="M 38 36 L 50 64 L 62 36" stroke="#9aaa8a" stroke-width="3" stroke-linecap="round" stroke-linejoin="miter" fill="none"/>
+  <!-- two dots at top -->
+  <circle cx="24" cy="28" r="3.5" fill="#2a382a"/>
+  <circle cx="76" cy="28" r="3.5" fill="#2a382a"/>
+</svg>

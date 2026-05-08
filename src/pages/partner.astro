@@ -1,0 +1,162 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const partner = [
+  { kategorie: "Architektur", name: "[Architekturbüro einsetzen]", ort: "Berchtesgaden" },
+  { kategorie: "Statik", name: "[Ingenieurbüro einsetzen]", ort: "Bad Reichenhall" },
+  { kategorie: "Energieberatung & QNG", name: "[Büro einsetzen]", ort: "Salzburg" },
+  { kategorie: "Holzbau", name: "[Zimmerei einsetzen]", ort: "Schönau am Königssee" },
+  { kategorie: "Mauerbau", name: "[Bauunternehmen einsetzen]", ort: "Berchtesgaden" },
+  { kategorie: "Heizung & Sanitär", name: "[Betrieb einsetzen]", ort: "Marktschellenberg" },
+  { kategorie: "Elektrotechnik", name: "[Betrieb einsetzen]", ort: "Bad Reichenhall" },
+  { kategorie: "Innenausbau", name: "[Schreinerei einsetzen]", ort: "Schönau am Königssee" },
+  { kategorie: "Fernwärme", name: "Bioenergie Berchtesgadener Land GmbH", ort: "Berchtesgaden" },
+  { kategorie: "Notariat", name: "[Notariat einsetzen]", ort: "Berchtesgaden" },
+  { kategorie: "Finanzierung", name: "[Bank einsetzen]", ort: "Region" },
+  { kategorie: "Vermessung", name: "[Vermessungsbüro einsetzen]", ort: "Berchtesgaden" },
+];
+---
+
+<Layout
+  title="Partner — VERO Wohnbau"
+  description="Mit wem wir bauen. Architekten, Handwerker, Berater und Lieferanten aus dem Berchtesgadener Land."
+  headerVariant="light"
+>
+
+  {/* HERO */}
+  <section class="relative h-[70svh] min-h-[480px] overflow-hidden">
+    <div class="absolute inset-0">
+      <img
+        src="https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=2200&q=85&auto=format&fit=crop"
+        alt="Werkstatt — Handwerk und Material"
+        class="w-full h-full object-cover ken-burns"
+      />
+      <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(26,36,26,0.3) 0%, rgba(26,36,26,0.55) 50%, rgba(26,36,26,0.85) 100%);"></div>
+    </div>
+
+    <div class="relative z-10 h-full flex flex-col justify-end pb-20 md:pb-28">
+      <div class="ct-wide grid lg:grid-cols-12 gap-8 items-end">
+        <div class="lg:col-span-9">
+          <p class="eyebrow mb-6" style="color: var(--color-olive-bright);">— Partner</p>
+          <h1 class="text-balance" style="color: var(--color-cream); font-weight: 200;" data-reveal>
+            Mit wem wir <em style="color: var(--color-olive-bright); font-weight: 300;">bauen</em>.
+          </h1>
+        </div>
+        <div class="lg:col-span-3 lg:pl-8" data-reveal data-reveal-delay="200">
+          <p class="text-base leading-relaxed" style="color: color-mix(in oklab, var(--color-cream) 88%, transparent);">
+            Die Menschen und Betriebe, die jedes unserer Projekte erst möglich
+            machen. Aus der Region, fachlich versiert, persönlich vertraut.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* PRINZIP */}
+  <section class="sec-tall" style="background: var(--color-cream);">
+    <div class="ct-wide grid lg:grid-cols-12 gap-12">
+      <div class="lg:col-span-3" data-reveal>
+        <p class="eyebrow">— Prinzip</p>
+      </div>
+      <div class="lg:col-span-9 space-y-8">
+        <p
+          class="font-display font-light text-balance"
+          style="font-size: clamp(1.75rem, 3.4vw, 3rem); line-height: 1.2; letter-spacing: -0.02em; color: var(--color-tann);"
+          data-reveal
+          data-reveal-delay="100"
+        >
+          Lange Beziehungen statt <em style="color: var(--color-salbei); font-weight: 400;">günstigster Anbieter</em>.
+        </p>
+
+        <div class="max-w-2xl space-y-6 leading-relaxed text-lg" style="color: var(--color-salbei);" data-reveal data-reveal-delay="200">
+          <p>
+            Bei jedem Projekt fragen wir uns: Mit wem wollen wir das machen? Die
+            Antwort fällt fast immer gleich aus — mit den Leuten, mit denen wir
+            letztes Mal gut zusammengearbeitet haben.
+          </p>
+          <p>
+            Das hat einen Preis. Wir sind nicht immer die günstigsten. Aber wir
+            haben Handwerker, die mitdenken, die zur Baustellenkonferenz wirklich
+            erscheinen, und die ein Detail noch einmal nacharbeiten, ohne dass es
+            ein Streitgespräch braucht.
+          </p>
+          <p style="color: var(--color-tann);">
+            Und nach der Schlüsselübergabe? Sind wir alle noch da, wenn etwas zu
+            klären ist.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* NETZWERK — large editorial table */}
+  <section class="relative" style="background: var(--color-tann); color: var(--color-cream);">
+    <div class="ct-wide py-20 md:py-32">
+      <div class="grid lg:grid-cols-12 gap-12 mb-20">
+        <div class="lg:col-span-3" data-reveal>
+          <p class="eyebrow" style="color: var(--color-olive-bright);">— Netzwerk</p>
+        </div>
+        <div class="lg:col-span-9" data-reveal data-reveal-delay="100">
+          <h2 class="text-balance" style="color: var(--color-cream);">
+            Eine kleine <em style="color: var(--color-olive-bright); font-weight: 300;">Auswahl</em>.
+          </h2>
+        </div>
+      </div>
+
+      <ul>
+        {partner.map((p, i) => (
+          <li
+            class="grid lg:grid-cols-12 gap-6 lg:gap-12 py-8 items-baseline"
+            style="border-top: 1px solid rgba(240,237,228,0.12);"
+            data-reveal
+            data-reveal-delay={(i % 4) * 80 + ""}
+          >
+            <p
+              class="lg:col-span-1 font-mono text-xs uppercase tracking-[0.22em]"
+              style="color: var(--color-olive-bright);"
+            >
+              0{i + 1 < 10 ? '0' + (i + 1) : i + 1}
+            </p>
+            <p
+              class="lg:col-span-3 text-xs font-mono uppercase tracking-[0.22em]"
+              style="color: color-mix(in oklab, var(--color-cream) 60%, transparent);"
+            >
+              {p.kategorie}
+            </p>
+            <p
+              class="lg:col-span-5 font-display font-light"
+              style="font-size: clamp(1.25rem, 1.8vw, 1.5rem); line-height: 1.2; color: var(--color-cream);"
+            >
+              {p.name}
+            </p>
+            <p class="lg:col-span-3 text-sm" style="color: color-mix(in oklab, var(--color-cream) 65%, transparent);">
+              {p.ort}
+            </p>
+          </li>
+        ))}
+        <li style="border-top: 1px solid rgba(240,237,228,0.12);"></li>
+      </ul>
+    </div>
+  </section>
+
+  {/* CTA */}
+  <section class="sec-tall" style="background: var(--color-paper);">
+    <div class="ct-wide grid lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-7" data-reveal>
+        <p class="eyebrow mb-6">— Sie wollen mit uns arbeiten?</p>
+        <h2 class="text-balance">
+          Wir sind <em style="color: var(--color-olive); font-weight: 300;">erreichbar</em>.
+        </h2>
+        <p class="mt-8 leading-relaxed text-lg max-w-xl" style="color: var(--color-salbei);">
+          Handwerksbetrieb, Lieferant, Architekturbüro? Wenn Sie aus der Region
+          kommen, sauber arbeiten und Lust auf längerfristige Zusammenarbeit
+          haben — schreiben Sie uns. Wir antworten, auch wenn es gerade nicht
+          passt.
+        </p>
+      </div>
+      <div class="lg:col-span-5 lg:text-right" data-reveal data-reveal-delay="200">
+        <a href="/kontakt?betreff=Partnerschaft" class="btn btn-solid">Kontakt aufnehmen</a>
+      </div>
+    </div>
+  </section>
+</Layout>

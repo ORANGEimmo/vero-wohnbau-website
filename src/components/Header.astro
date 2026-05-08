@@ -1,0 +1,205 @@
+---
+interface Props {
+  variant?: "dark" | "light";
+}
+
+const { variant = "dark" } = Astro.props;
+
+const nav = [
+  { href: "/projekte", label: "Projekte", num: "01" },
+  { href: "/ankaufsprofil", label: "Ankaufsprofil", num: "02" },
+  { href: "/ueber-uns", label: "Über uns", num: "03" },
+  { href: "/partner", label: "Partner", num: "04" },
+  { href: "/kontakt", label: "Kontakt", num: "05" },
+];
+
+const path = Astro.url.pathname;
+const isLight = variant === "light";
+
+// Initial CSS-variable values, depending on variant.
+// On scroll, these get overwritten via JS to the "scrolled" set (always tann/olive/line).
+const initialFg = isLight ? "var(--color-cream)" : "var(--color-tann)";
+const initialAccent = isLight ? "var(--color-olive-bright)" : "var(--color-olive)";
+const initialRule = isLight ? "rgba(240,237,228,0.18)" : "var(--color-line)";
+
+const headerStyle = [
+  `--nav-fg: ${initialFg};`,
+  `--nav-accent: ${initialAccent};`,
+  `--nav-rule: ${initialRule};`,
+  `color: var(--nav-fg);`,
+].join(" ");
+---
+
+<header
+  id="site-header"
+  class="fixed top-0 left-0 right-0 z-50 transition-[background-color,backdrop-filter,padding] duration-500"
+  data-variant={variant}
+  style={headerStyle}
+>
+  <div
+    class="ct-wide flex items-center justify-between transition-all duration-500"
+    style="padding-block: 1.25rem;"
+  >
+    {/* Logo — two variants stacked, crossfade with scroll state */}
+    <a
+      href="/"
+      class="block relative group"
+      aria-label="VERO Wohnbau – Startseite"
+      style="height: 128px;"
+    >
+      <img
+        id="logo-light"
+        src="/assets/vero-logo-light.png"
+        alt="VERO Wohnbau"
+        class="absolute inset-0 transition-opacity duration-500"
+        style={`height: 128px; width: auto; opacity: ${isLight ? 1 : 0};`}
+        loading="eager"
+        decoding="async"
+      />
+      <img
+        id="logo-dark"
+        src="/assets/vero-logo-salbei.png"
+        alt="VERO Wohnbau"
+        class="block transition-opacity duration-500"
+        style={`height: 128px; width: auto; opacity: ${isLight ? 0 : 1};`}
+        loading="eager"
+        decoding="async"
+      />
+    </a>
+
+    <nav class="hidden lg:flex items-center gap-12">
+      {nav.map((item) => {
+        const active = path === item.href || (item.href !== "/" && path.startsWith(item.href));
+        return (
+          <a
+            href={item.href}
+            class="group flex items-baseline gap-2 transition-[color,opacity] duration-500"
+            style={`color: var(--nav-fg); opacity: ${active ? 1 : 0.78};`}
+          >
+            <span class="font-mono text-[0.65rem] transition-colors duration-500" style="color: var(--nav-accent);">{item.num}</span>
+            <span class="text-sm tracking-wide link-underline" style={`font-weight: ${active ? 500 : 400};`}>
+              {item.label}
+            </span>
+          </a>
+        );
+      })}
+    </nav>
+
+    <button
+      id="menu-toggle"
+      class="lg:hidden p-2 -mr-2"
+      aria-label="Menü öffnen"
+      aria-expanded="false"
+    >
+      <span class="block w-7 h-px mb-2 transition-colors duration-500" style="background: var(--nav-fg);"></span>
+      <span class="block w-7 h-px transition-colors duration-500" style="background: var(--nav-fg);"></span>
+    </button>
+  </div>
+
+  <div
+    class="absolute left-0 right-0 bottom-0 h-px transition-opacity duration-500 opacity-0"
+    id="header-rule"
+    style="background: var(--nav-rule);"
+  ></div>
+
+  {/* Mobile drawer */}
+  <div
+    id="mobile-nav"
+    class="hidden fixed inset-0 z-40 flex flex-col items-start justify-center px-8 lg:hidden"
+    style="background: var(--color-tann); color: var(--color-cream);"
+  >
+    <ul class="space-y-6">
+      {nav.map((item) => (
+        <li>
+          <a href={item.href} class="flex items-baseline gap-4 group">
+            <span class="font-mono text-xs" style="color: var(--color-olive-bright);">{item.num}</span>
+            <span
+              class="font-display font-light"
+              style="color: var(--color-cream); font-size: clamp(2rem, 8vw, 3.5rem); line-height: 1;"
+            >
+              {item.label}
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</header>
+
+<script>
+  type NavState = {
+    fg: string;
+    accent: string;
+    rule: string;
+  };
+
+  const STATES: Record<"lightTop" | "darkTop" | "scrolled", NavState> = {
+    lightTop: {
+      fg: "var(--color-cream)",
+      accent: "var(--color-olive-bright)",
+      rule: "rgba(240,237,228,0.18)",
+    },
+    darkTop: {
+      fg: "var(--color-tann)",
+      accent: "var(--color-olive)",
+      rule: "var(--color-line)",
+    },
+    scrolled: {
+      fg: "var(--color-tann)",
+      accent: "var(--color-olive)",
+      rule: "var(--color-line)",
+    },
+  };
+
+  const apply = (header: HTMLElement, state: NavState) => {
+    header.style.setProperty("--nav-fg", state.fg);
+    header.style.setProperty("--nav-accent", state.accent);
+    header.style.setProperty("--nav-rule", state.rule);
+  };
+
+  const init = () => {
+    const header = document.getElementById("site-header") as HTMLElement | null;
+    const rule = document.getElementById("header-rule");
+    const toggle = document.getElementById("menu-toggle");
+    const drawer = document.getElementById("mobile-nav");
+    const logoLight = document.getElementById("logo-light") as HTMLImageElement | null;
+    const logoDark = document.getElementById("logo-dark") as HTMLImageElement | null;
+
+    if (header) {
+      const variant = header.dataset.variant || "dark";
+      const isLightInitial = variant === "light";
+
+      const onScroll = () => {
+        const scrolled = window.scrollY > 32;
+        if (scrolled) {
+          header.style.background = "color-mix(in oklab, var(--color-cream) 92%, transparent)";
+          header.style.backdropFilter = "blur(12px)";
+          apply(header, STATES.scrolled);
+          if (rule) rule.style.opacity = "1";
+          if (logoLight) logoLight.style.opacity = "0";
+          if (logoDark) logoDark.style.opacity = "1";
+        } else {
+          header.style.background = "transparent";
+          header.style.backdropFilter = "none";
+          apply(header, isLightInitial ? STATES.lightTop : STATES.darkTop);
+          if (rule) rule.style.opacity = "0";
+          if (logoLight) logoLight.style.opacity = isLightInitial ? "1" : "0";
+          if (logoDark) logoDark.style.opacity = isLightInitial ? "0" : "1";
+        }
+      };
+      onScroll();
+      window.addEventListener("scroll", onScroll, { passive: true });
+    }
+
+    if (toggle && drawer) {
+      toggle.addEventListener("click", () => {
+        const open = drawer.classList.toggle("hidden") === false;
+        toggle.setAttribute("aria-expanded", String(open));
+        document.body.style.overflow = open ? "hidden" : "";
+      });
+    }
+  };
+
+  init();
+  document.addEventListener("astro:page-load", init);
+</script>

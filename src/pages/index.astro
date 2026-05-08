@@ -1,0 +1,384 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { projekte } from "../data/projekte";
+
+const principles = [
+  {
+    num: "01",
+    titel: "Verwurzelt.",
+    untertitel: "Im Berchtesgadener Land",
+    text: "Wir leben hier. Bauen hier. Mit Handwerkern, die wir kennen, und Lieferanten, die wir auch nach der Schlüsselübergabe noch treffen. Region ist für uns keine Marketing-Vokabel — sondern Voraussetzung.",
+    image: "/assets/prinzip-01-verwurzelt.jpg",
+    imageAlt: "Traditionelles Bauernhaus mit Holzstapel im Berchtesgadener Land",
+    imageCaption: "Berchtesgadener Land · 47°35′N",
+  },
+  {
+    num: "02",
+    titel: "Material.",
+    untertitel: "Holz, Stein, Zeit",
+    text: "Massivholz, regionaler Stein, porosiertes Mauerwerk. Materialien, die altern dürfen — und dabei besser werden. Keine Imitate, keine Trendoberflächen. Was wir verbauen, soll in dreißig Jahren noch überzeugen.",
+    image: "/assets/prinzip-02-material.jpg",
+    imageAlt: "Lärchen-Holzschindeln im Streiflicht",
+    imageCaption: "Lärche · Schindel",
+  },
+  {
+    num: "03",
+    titel: "Anspruch.",
+    untertitel: "Architektur mit Haltung",
+    text: "Jedes Haus entsteht aus seinem Ort heraus. Keine Kataloglösungen, keine Wiederholung — sondern Architektur, die zur Topografie, zur Nachbarschaft und zu den Menschen passt, die einziehen werden.",
+    image: "/assets/prinzip-03-anspruch.jpg",
+    imageAlt: "Modernes alpines Holzhaus vor verschneiter Bergkulisse",
+    imageCaption: "Architektur · zeitgenössisch alpin",
+  },
+];
+---
+
+<Layout title="VERO Wohnbau — wahr · echt · wirklich" headerVariant="light">
+
+  {/* ────────── HERO — full-bleed cinematic ────────── */}
+  <section class="relative h-[100svh] min-h-[640px] overflow-hidden" id="hero">
+    <div class="absolute inset-0">
+      <img
+        src="/assets/koenigssee-hero.jpg"
+        alt="Königssee von oben — Berchtesgadener Land"
+        class="w-full h-full object-cover ken-burns"
+      />
+      <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(26,36,26,0.25) 0%, rgba(26,36,26,0.35) 40%, rgba(26,36,26,0.85) 100%);"></div>
+      <div class="absolute inset-0" style="background: radial-gradient(ellipse at 30% 30%, transparent 0%, rgba(26,36,26,0.4) 80%);"></div>
+    </div>
+
+    <div class="relative z-10 h-full flex flex-col justify-end pb-20 md:pb-28">
+      <div class="ct-wide">
+        <div class="grid lg:grid-cols-12 gap-8 items-end">
+          <div class="lg:col-span-9">
+            <p class="eyebrow mb-8" style="color: var(--color-olive-bright);">
+              Bauträger · Berchtesgadener Land
+            </p>
+            <h1
+              class="font-display text-balance"
+              style="color: var(--color-cream); font-weight: 200; line-height: 0.92;"
+            >
+              <span class="block" data-reveal>Wir bauen</span>
+              <span
+                class="block italic"
+                style="color: var(--color-olive-bright); font-weight: 300;"
+                data-reveal
+                data-reveal-delay="200"
+              >
+                echt.
+              </span>
+            </h1>
+          </div>
+
+          <div class="lg:col-span-3 lg:pl-8" data-reveal data-reveal-delay="400">
+            <p
+              class="text-base leading-relaxed mb-8"
+              style="color: color-mix(in oklab, var(--color-cream) 88%, transparent);"
+            >
+              Häuser im Berchtesgadener Land. Mit natürlichen Materialien,
+              ehrlicher Verarbeitung und der Verwurzelung, die hierher gehört.
+            </p>
+            <a href="/projekte" class="btn btn-light">Aktuelle Projekte</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* Bottom-info bar */}
+    <div
+      class="absolute left-0 right-0 bottom-0 z-10 hidden md:block"
+      style="border-top: 1px solid rgba(240,237,228,0.14);"
+    >
+      <div class="ct-wide flex items-center justify-between py-5 text-xs font-mono uppercase tracking-[0.22em]" style="color: color-mix(in oklab, var(--color-cream) 65%, transparent);">
+        <p>47°35′N · 12°59′E</p>
+        <p class="hidden md:block">Schönau am Königssee</p>
+        <p class="flex items-center gap-3">
+          <span>Scroll</span>
+          <span class="inline-block w-8 h-px" style="background: currentColor;"></span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  {/* ────────── MARQUEE — tagline scrolls ────────── */}
+  <section
+    aria-hidden="true"
+    style="background: var(--color-tann); color: var(--color-cream); border-block: 1px solid rgba(240,237,228,0.08);"
+  >
+    <div class="marquee no-scrollbar">
+      <div class="marquee__track font-display font-light italic" style="font-size: clamp(3rem, 8vw, 6rem); line-height: 1;">
+        {Array.from({ length: 6 }).map(() => (
+          <span class="flex items-center gap-16 pr-16">
+            <span>wahr</span>
+            <span style="color: var(--color-olive-bright);">·</span>
+            <span>echt</span>
+            <span style="color: var(--color-olive-bright);">·</span>
+            <span>wirklich</span>
+            <span style="color: var(--color-olive-bright);">·</span>
+          </span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ────────── INTRO ────────── */}
+  <section class="sec-tall" style="background: var(--color-cream);">
+    <div class="ct-wide grid lg:grid-cols-12 gap-12">
+      <div class="lg:col-span-3 lg:pt-2" data-reveal>
+        <p class="eyebrow">Manifest</p>
+      </div>
+
+      <div class="lg:col-span-9">
+        <p
+          class="font-display font-light text-balance"
+          style="font-size: clamp(1.75rem, 3.4vw, 3rem); line-height: 1.2; letter-spacing: -0.02em; color: var(--color-tann);"
+          data-reveal
+          data-reveal-delay="100"
+        >
+          Wir sind kein Generalunternehmer. Kein Investmentvehikel. Kein
+          Konzern. Wir sind ein kleines Team aus dem Berchtesgadener Land,
+          das hier <em style="color: var(--color-salbei); font-weight: 400;">Häuser</em> baut —
+          mit der Sorgfalt, mit der man auch sein eigenes baut.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  {/* ────────── ATMOSPHERIC TRANSITION — full-bleed landscape ────────── */}
+  <section
+    class="relative overflow-hidden"
+    style="height: clamp(360px, 60svh, 640px);"
+    aria-hidden="true"
+  >
+    <img
+      src="/assets/transition-bgl-panorama.jpg"
+      alt=""
+      class="absolute inset-0 w-full h-full object-cover ken-burns"
+      loading="lazy"
+    />
+    <div
+      class="absolute inset-0"
+      style="background: linear-gradient(180deg, rgba(245,242,232,0.0) 0%, rgba(26,36,26,0.15) 60%, rgba(26,36,26,0.35) 100%);"
+    ></div>
+    <div class="absolute left-0 right-0 bottom-0">
+      <div class="ct-wide flex items-center justify-between py-6 text-xs font-mono uppercase tracking-[0.22em]" style="color: color-mix(in oklab, var(--color-cream) 80%, transparent);">
+        <p>Berchtesgadener Land</p>
+        <p class="hidden md:block">Watzmann · Königssee · Untersberg</p>
+        <p>— Heimat</p>
+      </div>
+    </div>
+  </section>
+
+  {/* ────────── 3 PRINCIPLES — editorial chapters with imagery ────────── */}
+  <section class="relative" style="background: var(--color-paper);">
+    <div class="ct-wide">
+      {principles.map((p, i) => {
+        const reversed = i % 2 === 1;
+        return (
+          <div
+            class={`grid lg:grid-cols-12 gap-10 lg:gap-16 items-center py-20 md:py-32 ${
+              i < principles.length - 1 ? "border-b border-[var(--color-line)]" : ""
+            }`}
+          >
+            {/* Image column */}
+            <div class={`lg:col-span-7 relative ${reversed ? "lg:order-2" : ""}`}>
+              <div
+                class="relative overflow-hidden"
+                style="aspect-ratio: 5/4; background: color-mix(in oklab, var(--color-salbei) 18%, var(--color-paper));"
+              >
+                <img
+                  src={p.image}
+                  alt={p.imageAlt}
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+              {/* Caption */}
+              <p
+                class="mt-4 text-xs font-mono uppercase tracking-[0.22em]"
+                style="color: var(--color-salbei);"
+              >
+                — {p.imageCaption}
+              </p>
+            </div>
+
+            {/* Text column */}
+            <div
+              class={`lg:col-span-5 ${reversed ? "lg:order-1 lg:pr-8" : "lg:pl-8"}`}
+              data-reveal
+              data-reveal-delay="150"
+            >
+              <p class="section-num mb-6">— {p.num}</p>
+              <p class="eyebrow mb-6">{p.untertitel}</p>
+              <h2 style="color: var(--color-tann);">{p.titel}</h2>
+              <p class="mt-10 leading-relaxed text-base max-w-md" style="color: var(--color-salbei);">
+                {p.text}
+              </p>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </section>
+
+  {/* ────────── QUOTE — full-bleed dark drama ────────── */}
+  <section class="relative overflow-hidden" style="background: var(--color-tann); color: var(--color-cream);">
+    <div class="ct-wide sec-tall relative">
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-2 hidden lg:block">
+          <p class="ascender">Haltung · 2026</p>
+        </div>
+
+        <div class="lg:col-span-10">
+          <div
+            class="h-px mb-12"
+            style="background: var(--color-olive); width: 8rem;"
+            data-reveal-line
+          ></div>
+
+          <blockquote
+            class="font-display font-light text-balance"
+            style="font-size: clamp(2.25rem, 5.5vw, 5rem); line-height: 1.05; letter-spacing: -0.03em; color: var(--color-cream);"
+            data-reveal
+          >
+            <span class="italic" style="color: var(--color-olive-bright);">»</span>
+            Wir bauen wie für uns selbst.<br />
+            Nicht mehr, nicht weniger.
+            <span class="italic" style="color: var(--color-olive-bright);">«</span>
+          </blockquote>
+
+          <p
+            class="mt-12 text-sm font-mono uppercase tracking-[0.22em]"
+            style="color: color-mix(in oklab, var(--color-cream) 55%, transparent);"
+            data-reveal
+            data-reveal-delay="200"
+          >
+            VERO Wohnbau · Werteversprechen
+          </p>
+        </div>
+      </div>
+
+      {/* Decorative oversized type behind */}
+      <div
+        class="absolute -right-12 -bottom-12 pointer-events-none select-none font-display italic"
+        style="font-size: clamp(12rem, 28vw, 28rem); line-height: 0.85; color: rgba(240,237,228,0.04); font-weight: 200;"
+        aria-hidden="true"
+      >
+        echt
+      </div>
+    </div>
+  </section>
+
+  {/* ────────── PROJECTS — editorial asymmetric ────────── */}
+  <section class="sec-tall" style="background: var(--color-cream);">
+    <div class="ct-wide">
+      <div class="flex items-end justify-between flex-wrap gap-8 mb-20" data-reveal>
+        <div>
+          <p class="eyebrow mb-6">Aktuelle Projekte</p>
+          <h2 style="max-width: 18ch;">
+            Was wir gerade <em style="color: var(--color-olive); font-weight: 300;">bauen</em>.
+          </h2>
+        </div>
+        <a href="/projekte" class="btn">Alle Projekte</a>
+      </div>
+
+      <div class="grid lg:grid-cols-12 gap-12 lg:gap-16">
+        {projekte.map((p, i) => (
+          <a
+            href={`/projekte/${p.slug}`}
+            class={`group block ${i === 0 ? "lg:col-span-7" : "lg:col-span-5 lg:mt-32"}`}
+          >
+            <div
+              class="relative overflow-hidden"
+              style="aspect-ratio: 4/5; background: color-mix(in oklab, var(--color-salbei) 18%, var(--color-cream));"
+            >
+              <img
+                src={p.hero}
+                alt={p.name}
+                class="w-full h-full object-cover transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
+                loading="lazy"
+              />
+              {/* status badge */}
+              <div class="absolute top-6 left-6 flex items-center gap-3 text-xs font-mono uppercase tracking-[0.22em]" style="color: var(--color-cream); mix-blend-mode: difference;">
+                <span class="inline-block w-2 h-2" style={`background: ${p.status === 'In Bau' ? 'var(--color-olive-bright)' : 'rgba(240,237,228,0.7)'};`}></span>
+                {p.status}
+              </div>
+              {/* corner index */}
+              <div class="absolute bottom-6 right-6 font-mono text-xs" style="color: var(--color-cream); mix-blend-mode: difference;">
+                — 0{i + 1}
+              </div>
+            </div>
+
+            <div class="pt-8 flex justify-between items-start gap-6">
+              <div>
+                <h3
+                  class="font-display font-light"
+                  style="color: var(--color-tann); font-size: clamp(1.75rem, 3vw, 2.5rem);"
+                >
+                  {p.name}
+                </h3>
+                <p class="mt-2 text-base" style="color: var(--color-salbei);">{p.ort} · {p.jahr}</p>
+              </div>
+              <span
+                class="font-mono text-xs uppercase tracking-[0.22em] pt-2 group-hover:translate-x-1 transition-transform duration-500"
+                style="color: var(--color-olive);"
+              >
+                Ansehen →
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ────────── ANKAUF CTA — split with image ────────── */}
+  <section class="relative overflow-hidden" style="background: var(--color-paper);">
+    <div class="grid lg:grid-cols-12 min-h-[70vh]">
+      <div class="lg:col-span-5 relative" data-reveal-image>
+        <img
+          src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1200&q=85&auto=format&fit=crop"
+          alt="Bergland im Berchtesgadener Land"
+          class="absolute inset-0 w-full h-full object-cover"
+          loading="lazy"
+        />
+      </div>
+
+      <div class="lg:col-span-7 flex flex-col justify-center px-6 md:px-16 lg:px-24 py-24">
+        <p class="eyebrow mb-6" data-reveal>Grundstücke gesucht</p>
+        <h2 class="text-balance" data-reveal data-reveal-delay="100">
+          Sie haben ein Grundstück<br />
+          im <em style="color: var(--color-olive); font-weight: 300;">Berchtesgadener Land</em>?
+        </h2>
+        <p class="mt-10 text-lg leading-relaxed max-w-xl" style="color: var(--color-salbei);" data-reveal data-reveal-delay="200">
+          Wir kaufen Grundstücke und Bestandsobjekte zwischen 500 und 5.000 m².
+          Diskret, fair, mit klaren Kriterien — und einer Antwort, die zählt.
+        </p>
+        <div class="mt-12 flex flex-wrap gap-4" data-reveal data-reveal-delay="300">
+          <a href="/ankaufsprofil" class="btn btn-solid">Ankaufsprofil</a>
+          <a href="/kontakt?betreff=Ankauf" class="btn">Direkt anbieten</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ────────── CLOSING MARQUEE ────────── */}
+  <section
+    aria-hidden="true"
+    style="background: var(--color-cream); border-top: 1px solid var(--color-line);"
+  >
+    <div class="marquee no-scrollbar">
+      <div class="marquee__track font-display font-light" style="font-size: clamp(2.5rem, 6vw, 5rem); line-height: 1; color: var(--color-tann);">
+        {Array.from({ length: 4 }).map(() => (
+          <span class="flex items-center gap-12 pr-12">
+            <span>VERO</span>
+            <span class="italic" style="color: var(--color-olive);">Wohnbau</span>
+            <span>—</span>
+            <span class="italic" style="color: var(--color-olive);">Berchtesgaden</span>
+            <span>—</span>
+          </span>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,207 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const team = [
+  {
+    name: "[Name einsetzen]",
+    rolle: "Geschäftsführung",
+    bio: "Aufgewachsen im Berchtesgadener Land, [Studium/Ausbildung einsetzen]. Über 15 Jahre Bauerfahrung in der Region.",
+    img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900&h=1200&q=85&auto=format&fit=crop&crop=faces",
+  },
+  {
+    name: "[Name einsetzen]",
+    rolle: "Bauleitung",
+    bio: "[Kurzer Werdegang einsetzen] — verantwortlich für die operative Umsetzung auf der Baustelle.",
+    img: "https://images.unsplash.com/photo-1463453091185-61582044d556?w=900&h=1200&q=85&auto=format&fit=crop&crop=faces",
+  },
+  {
+    name: "[Name einsetzen]",
+    rolle: "Vertrieb & Kunden",
+    bio: "[Kurzer Werdegang einsetzen] — erste Anlaufstelle für Käufer und Verkäufer.",
+    img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=900&h=1200&q=85&auto=format&fit=crop&crop=faces",
+  },
+];
+
+const werte = [
+  { num: "01", titel: "Ehrlich.", text: "Wir benennen Schwächen, bevor jemand fragt. Eine Holzfassade vergraut. Eine Baustelle ist laut. Ein KfW-40-Standard kostet mehr als ein Standardneubau. Das ist die Wahrheit — und damit fängt jedes gute Gespräch an." },
+  { num: "02", titel: "Regional.", text: "Wir bauen, wo wir leben. Mit Handwerkern aus dem Landkreis, mit Materialien aus der Region wo es geht, mit Architekten, die die Topografie kennen. Region ist nicht Folklore, sondern Qualität." },
+  { num: "03", titel: "Verbindlich.", text: "Was wir zusagen, halten wir. Termine, Preise, Ausstattung. Nachverhandlungen am Ende sind nicht unser Stil. Lieber vorher mehr klären als hinterher mehr fordern." },
+];
+---
+
+<Layout
+  title="Über uns — VERO Wohnbau"
+  description="VERO Wohnbau — wer wir sind, woran wir arbeiten und warum wir bauen, wie wir bauen."
+  headerVariant="light"
+>
+
+  {/* HERO */}
+  <section class="relative h-[80svh] min-h-[560px] overflow-hidden">
+    <div class="absolute inset-0">
+      <img
+        src="/assets/handwerk-dachstuhl.jpg"
+        alt="Dachstuhl mit Lärchen-Schindeln im Bau — Handwerk im Berchtesgadener Land"
+        class="w-full h-full object-cover ken-burns"
+      />
+      <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(26,36,26,0.25) 0%, rgba(26,36,26,0.4) 50%, rgba(26,36,26,0.85) 100%);"></div>
+    </div>
+
+    <div class="relative z-10 h-full flex flex-col justify-end pb-20 md:pb-28">
+      <div class="ct-wide grid lg:grid-cols-12 gap-8 items-end">
+        <div class="lg:col-span-9">
+          <p class="eyebrow mb-6" style="color: var(--color-olive-bright);">— Über uns</p>
+          <h1 class="text-balance" style="color: var(--color-cream); font-weight: 200;" data-reveal>
+            Bauträger aus<br />
+            <em style="color: var(--color-olive-bright); font-weight: 300;">Berchtesgaden</em>.
+          </h1>
+        </div>
+        <div class="lg:col-span-3 lg:pl-8" data-reveal data-reveal-delay="200">
+          <p class="text-base leading-relaxed" style="color: color-mix(in oklab, var(--color-cream) 88%, transparent);">
+            Mit Adresse, mit Gesicht. Kein Investorenkonstrukt, sondern ein
+            kleines Team, das hier seit Jahren baut.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* GESCHICHTE */}
+  <section class="sec-tall" style="background: var(--color-cream);">
+    <div class="ct-wide grid lg:grid-cols-12 gap-12">
+      <div class="lg:col-span-3" data-reveal>
+        <p class="eyebrow">— Geschichte</p>
+      </div>
+      <div class="lg:col-span-9">
+        <p
+          class="font-display font-light text-balance"
+          style="font-size: clamp(1.75rem, 3.4vw, 3rem); line-height: 1.2; letter-spacing: -0.02em; color: var(--color-tann);"
+          data-reveal
+          data-reveal-delay="100"
+        >
+          Gegründet [Jahr einsetzen] aus der Überzeugung, dass es einen
+          <em style="color: var(--color-salbei); font-weight: 400;">anderen Weg</em> gibt,
+          in der Region zu bauen. Nicht maximieren, nicht standardisieren —
+          sondern Häuser machen, die hierher gehören.
+        </p>
+
+        <div class="mt-16 grid md:grid-cols-3 gap-12 max-w-4xl" data-reveal data-reveal-delay="200">
+          <div>
+            <p class="font-display font-light" style="font-size: clamp(2.5rem, 4vw, 3.5rem); color: var(--color-olive); line-height: 1;">
+              [Jahr]
+            </p>
+            <p class="mt-3 text-sm leading-relaxed" style="color: var(--color-salbei);">
+              Gründung in Berchtesgaden
+            </p>
+          </div>
+          <div>
+            <p class="font-display font-light" style="font-size: clamp(2.5rem, 4vw, 3.5rem); color: var(--color-olive); line-height: 1;">
+              [Anzahl]
+            </p>
+            <p class="mt-3 text-sm leading-relaxed" style="color: var(--color-salbei);">
+              realisierte Projekte seit Beginn
+            </p>
+          </div>
+          <div>
+            <p class="font-display font-light" style="font-size: clamp(2.5rem, 4vw, 3.5rem); color: var(--color-olive); line-height: 1;">
+              100 %
+            </p>
+            <p class="mt-3 text-sm leading-relaxed" style="color: var(--color-salbei);">
+              Bauten im Berchtesgadener Land
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* WERTE — Tann */}
+  <section class="relative" style="background: var(--color-tann); color: var(--color-cream);">
+    <div class="ct-wide py-24 md:py-32">
+      <div class="grid lg:grid-cols-12 gap-12 mb-20">
+        <div class="lg:col-span-3" data-reveal>
+          <p class="eyebrow" style="color: var(--color-olive-bright);">— Werte</p>
+        </div>
+        <div class="lg:col-span-9" data-reveal data-reveal-delay="100">
+          <h2 class="text-balance" style="color: var(--color-cream);">
+            Drei Worte, an denen wir uns <em style="color: var(--color-olive-bright); font-weight: 300;">messen</em> lassen.
+          </h2>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-px" style="background: rgba(240,237,228,0.12);">
+        {werte.map((w) => (
+          <div class="p-8 lg:p-12 min-h-[320px]" style="background: var(--color-tann);" data-reveal>
+            <p class="font-mono text-xs uppercase tracking-[0.22em] mb-8" style="color: var(--color-olive-bright);">
+              — {w.num}
+            </p>
+            <h3
+              class="font-display font-light"
+              style="font-size: clamp(2.5rem, 4vw, 3.5rem); color: var(--color-cream); line-height: 1;"
+            >
+              {w.titel}
+            </h3>
+            <div class="my-8 h-px w-12" style="background: var(--color-olive-bright);"></div>
+            <p class="leading-relaxed text-base" style="color: color-mix(in oklab, var(--color-cream) 78%, transparent);">
+              {w.text}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* TEAM */}
+  <section class="sec-tall" style="background: var(--color-paper);">
+    <div class="ct-wide">
+      <div class="grid lg:grid-cols-12 gap-12 mb-20">
+        <div class="lg:col-span-3" data-reveal>
+          <p class="eyebrow">— Team</p>
+        </div>
+        <div class="lg:col-span-9" data-reveal data-reveal-delay="100">
+          <h2 class="text-balance">
+            Die <em style="color: var(--color-olive); font-weight: 300;">Menschen</em> dahinter.
+          </h2>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 lg:gap-12">
+        {team.map((t, i) => (
+          <article data-reveal data-reveal-delay={(i % 3) * 150 + ""}>
+            <div class="aspect-[3/4] overflow-hidden">
+              <img
+                src={t.img}
+                alt={t.name}
+                class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                loading="lazy"
+                data-reveal-image
+              />
+            </div>
+            <p class="mt-8 font-mono text-xs uppercase tracking-[0.22em]" style="color: var(--color-olive);">
+              — 0{i + 1} · {t.rolle}
+            </p>
+            <h3 class="mt-3" style="font-size: clamp(1.5rem, 2vw, 1.75rem);">{t.name}</h3>
+            <p class="mt-4 text-sm leading-relaxed" style="color: var(--color-salbei);">{t.bio}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* CLOSING QUOTE */}
+  <section class="relative overflow-hidden" style="background: var(--color-cream);">
+    <div class="ct-wide sec-tall max-w-5xl">
+      <p class="eyebrow mb-12" data-reveal>— Aus der Region</p>
+      <blockquote
+        class="font-display font-light text-balance"
+        style="font-size: clamp(2rem, 5vw, 4.5rem); line-height: 1.05; letter-spacing: -0.03em; color: var(--color-tann);"
+        data-reveal
+        data-reveal-delay="100"
+      >
+        <span class="italic" style="color: var(--color-olive);">»</span>
+        Wir bauen wie für uns selbst.
+        <em style="color: var(--color-olive); font-weight: 300;">Nicht mehr, nicht weniger.</em>
+        <span class="italic" style="color: var(--color-olive);">«</span>
+      </blockquote>
+    </div>
+  </section>
+</Layout>

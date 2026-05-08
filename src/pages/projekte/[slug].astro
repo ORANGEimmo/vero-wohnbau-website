@@ -1,0 +1,267 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { projekte, getProjekt } from "../../data/projekte";
+
+export function getStaticPaths() {
+  return projekte.map((p) => ({ params: { slug: p.slug } }));
+}
+
+const { slug } = Astro.params;
+const projekt = getProjekt(slug!);
+if (!projekt) return Astro.redirect("/projekte");
+---
+
+<Layout
+  title={`${projekt.name} — VERO Wohnbau`}
+  description={projekt.beschreibung.slice(0, 160)}
+  headerVariant="light"
+>
+
+  {/* ────────── CINEMATIC HERO ────────── */}
+  <section class="relative h-[100svh] min-h-[640px] overflow-hidden">
+    <div class="absolute inset-0">
+      <img
+        src={projekt.hero}
+        alt={projekt.name}
+        class="w-full h-full object-cover ken-burns"
+        loading="eager"
+      />
+      <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(26,36,26,0.2) 0%, rgba(26,36,26,0.4) 50%, rgba(26,36,26,0.85) 100%);"></div>
+    </div>
+
+    <div class="relative z-10 h-full flex flex-col justify-end pb-20 md:pb-28">
+      <div class="ct-wide">
+        <div class="grid lg:grid-cols-12 gap-8 items-end">
+          <div class="lg:col-span-9">
+            <p class="eyebrow mb-6" style="color: var(--color-olive-bright);">
+              {projekt.ort} · {projekt.status}
+            </p>
+            <h1
+              class="font-display text-balance"
+              style="color: var(--color-cream); font-weight: 200; line-height: 0.92;"
+              data-reveal
+            >
+              {projekt.name}
+            </h1>
+            <p
+              class="mt-8 italic font-display font-light max-w-2xl"
+              style="font-size: clamp(1.5rem, 2.6vw, 2.25rem); color: var(--color-olive-bright);"
+              data-reveal
+              data-reveal-delay="200"
+            >
+              {projekt.untertitel}
+            </p>
+          </div>
+
+          <div class="lg:col-span-3 lg:pl-8" data-reveal data-reveal-delay="400">
+            <p class="text-sm font-mono uppercase tracking-[0.22em] mb-4" style="color: color-mix(in oklab, var(--color-cream) 60%, transparent);">
+              {projekt.jahr}
+            </p>
+            <a href="#projekt" class="btn btn-light">Projekt entdecken</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="absolute left-0 right-0 bottom-0 z-10 hidden md:block"
+      style="border-top: 1px solid rgba(240,237,228,0.14);"
+    >
+      <div class="ct-wide flex items-center justify-between py-5 text-xs font-mono uppercase tracking-[0.22em]" style="color: color-mix(in oklab, var(--color-cream) 65%, transparent);">
+        <a href="/projekte" class="link-underline">← Alle Projekte</a>
+        <p>Projekt · {projekt.slug}</p>
+        <p class="flex items-center gap-3">
+          <span>Scroll</span>
+          <span class="inline-block w-8 h-px" style="background: currentColor;"></span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  {/* ────────── INTRO ────────── */}
+  <section id="projekt" class="sec-tall" style="background: var(--color-cream);">
+    <div class="ct-wide grid lg:grid-cols-12 gap-12">
+      <div class="lg:col-span-3" data-reveal>
+        <p class="eyebrow">— Das Projekt</p>
+      </div>
+
+      <div class="lg:col-span-9">
+        <p
+          class="font-display font-light text-balance"
+          style="font-size: clamp(1.75rem, 3.4vw, 3rem); line-height: 1.2; letter-spacing: -0.02em; color: var(--color-tann);"
+          data-reveal
+          data-reveal-delay="100"
+        >
+          {projekt.beschreibung}
+        </p>
+
+        {projekt.highlights.length > 0 && (
+          <ul class="mt-16 grid md:grid-cols-2 gap-x-12 gap-y-4" data-reveal data-reveal-delay="200">
+            {projekt.highlights.map((h, i) => (
+              <li class="flex gap-4 items-start py-3 border-b border-[var(--color-line)]">
+                <span class="font-mono text-xs pt-1" style="color: var(--color-olive);">0{i + 1}</span>
+                <span class="leading-relaxed" style="color: var(--color-salbei);">{h}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </div>
+  </section>
+
+  {/* ────────── ECKDATEN GRID — large ────────── */}
+  <section class="sec" style="background: var(--color-paper);">
+    <div class="ct-wide">
+      <div class="grid lg:grid-cols-12 gap-12 mb-16">
+        <div class="lg:col-span-3" data-reveal>
+          <p class="eyebrow">— Eckdaten</p>
+        </div>
+        <div class="lg:col-span-9" data-reveal data-reveal-delay="100">
+          <h2 class="text-balance">
+            Die <em style="color: var(--color-olive); font-weight: 300;">Zahlen</em> dahinter.
+          </h2>
+        </div>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4">
+        {projekt.fakten.map((f, i) => (
+          <div
+            class="border-t border-[var(--color-line)] py-8 px-1"
+            data-reveal
+            data-reveal-delay={(i % 4) * 100 + ""}
+          >
+            <p class="text-xs font-mono uppercase tracking-[0.22em] mb-4" style="color: var(--color-olive);">
+              {f.label}
+            </p>
+            <p
+              class="font-display font-light"
+              style="font-size: clamp(1.25rem, 1.8vw, 1.6rem); color: var(--color-tann); line-height: 1.2; letter-spacing: -0.01em;"
+            >
+              {f.wert}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ────────── AUSSTATTUNG ────────── */}
+  {projekt.ausstattung && (
+    <section class="sec-tall" style="background: var(--color-cream);">
+      <div class="ct-wide grid lg:grid-cols-12 gap-12">
+        <div class="lg:col-span-3" data-reveal>
+          <p class="eyebrow">— Ausstattung</p>
+        </div>
+        <div class="lg:col-span-9">
+          <h2 class="mb-16 text-balance" data-reveal data-reveal-delay="100">
+            Was <em style="color: var(--color-olive); font-weight: 300;">eingebaut</em> wird.
+          </h2>
+
+          <div class="grid md:grid-cols-2 gap-x-16 gap-y-16">
+            {projekt.ausstattung.map((a, i) => (
+              <div data-reveal data-reveal-delay={(i % 2) * 100 + 100 + ""}>
+                <p class="text-xs font-mono uppercase tracking-[0.22em] mb-4" style="color: var(--color-olive);">
+                  0{i + 1}
+                </p>
+                <h3 style="font-size: 1.75rem;">{a.titel}</h3>
+                <div class="my-6 h-px w-12" style="background: var(--color-olive);"></div>
+                <p class="leading-relaxed text-base" style="color: var(--color-salbei);">{a.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  {/* ────────── GALLERY — full bleed ────────── */}
+  {projekt.gallery.length > 0 && (
+    <section class="relative" style="background: var(--color-tann);">
+      <div class="ct-wide py-20 md:py-28">
+        <div class="grid lg:grid-cols-12 gap-12 mb-16 items-end">
+          <div class="lg:col-span-3" data-reveal>
+            <p class="eyebrow" style="color: var(--color-olive-bright);">— Eindrücke</p>
+          </div>
+          <div class="lg:col-span-9" data-reveal data-reveal-delay="100">
+            <h2 style="color: var(--color-cream);">
+              <em style="color: var(--color-olive-bright); font-weight: 300;">Bilder</em> aus der Vorstellung.
+            </h2>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-12 gap-4 lg:gap-6">
+          {projekt.gallery.map((src, i) => {
+            const layouts = [
+              "col-span-12 lg:col-span-8 aspect-[16/10]",
+              "col-span-12 lg:col-span-4 aspect-[4/5]",
+              "col-span-12 lg:col-span-12 aspect-[21/9]",
+              "col-span-6 lg:col-span-6 aspect-[4/5]",
+              "col-span-6 lg:col-span-6 aspect-[4/5]",
+            ];
+            return (
+              <div
+                class={`overflow-hidden ${layouts[i] || layouts[0]}`}
+                style="background: color-mix(in oklab, var(--color-tann) 80%, var(--color-cream));"
+              >
+                <img
+                  src={src}
+                  alt=""
+                  class="w-full h-full object-cover transition-transform duration-[1500ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-105"
+                  loading="lazy"
+                />
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {/* ────────── LAGE ────────── */}
+  {projekt.lage && (
+    <section class="sec-tall" style="background: var(--color-paper);">
+      <div class="ct-wide grid lg:grid-cols-12 gap-12">
+        <div class="lg:col-span-3" data-reveal>
+          <p class="eyebrow">— Die Lage</p>
+        </div>
+        <div class="lg:col-span-9" data-reveal data-reveal-delay="100">
+          <h2 class="text-balance mb-16">
+            <em style="color: var(--color-olive); font-weight: 300;">{projekt.ort}</em>.
+          </h2>
+          <p class="leading-relaxed" style="color: var(--color-salbei); font-size: 1.2rem; max-width: 60ch;">
+            {projekt.lage}
+          </p>
+        </div>
+      </div>
+    </section>
+  )}
+
+  {/* ────────── CTA ────────── */}
+  <section class="relative overflow-hidden" style="background: var(--color-tann); color: var(--color-cream);">
+    <div class="ct-wide sec-tall text-center max-w-4xl mx-auto relative z-10">
+      <p class="eyebrow mb-8" style="color: var(--color-olive-bright);" data-reveal>Interesse?</p>
+      <h2 class="text-balance mb-12" style="color: var(--color-cream);" data-reveal data-reveal-delay="100">
+        Wir zeigen Ihnen<br />
+        das <em style="color: var(--color-olive-bright); font-weight: 300;">Projekt</em>.
+      </h2>
+      <p class="text-lg leading-relaxed max-w-xl mx-auto" style="color: color-mix(in oklab, var(--color-cream) 80%, transparent);" data-reveal data-reveal-delay="200">
+        Vor Ort, am Plan oder am Telefon. Ein paar Sätze reichen für den
+        Anfang — wir antworten persönlich.
+      </p>
+      <div class="mt-12 flex flex-wrap justify-center gap-4" data-reveal data-reveal-delay="300">
+        <a href={`/kontakt?betreff=Kaufinteresse&projekt=${projekt.slug}`} class="btn btn-light">Kontakt aufnehmen</a>
+        <a href="/projekte" class="btn" style="border-color: rgba(240,237,228,0.3); color: color-mix(in oklab, var(--color-cream) 80%, transparent);">
+          Andere Projekte
+        </a>
+      </div>
+    </div>
+
+    <div
+      class="absolute -right-16 -bottom-16 pointer-events-none select-none font-display italic"
+      style="font-size: clamp(10rem, 24vw, 24rem); line-height: 0.85; color: rgba(240,237,228,0.04); font-weight: 200;"
+      aria-hidden="true"
+    >
+      VERO
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,196 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const WEB3FORMS_KEY = "[WEB3FORMS_ACCESS_KEY_EINSETZEN]";
+
+const url = new URL(Astro.request.url);
+const betreffPrefill = url.searchParams.get("betreff") || "";
+---
+
+<Layout
+  title="Kontakt — VERO Wohnbau"
+  description="Schreiben oder rufen Sie an. Wir antworten innerhalb von zwei Werktagen."
+  headerVariant="dark"
+>
+
+  {/* HEADER */}
+  <section class="pt-56 pb-20 md:pt-64 md:pb-28" style="background: var(--color-cream);">
+    <div class="ct-wide grid lg:grid-cols-12 gap-12">
+      <div class="lg:col-span-3" data-reveal>
+        <p class="eyebrow">— Kontakt</p>
+      </div>
+
+      <div class="lg:col-span-9">
+        <h1 class="text-balance" data-reveal data-reveal-delay="100">
+          Schreiben Sie uns.<br />
+          Wir <em style="color: var(--color-olive); font-weight: 300;">hören zu</em>.
+        </h1>
+        <p
+          class="mt-12 text-lg max-w-2xl leading-relaxed"
+          style="color: var(--color-salbei);"
+          data-reveal
+          data-reveal-delay="300"
+        >
+          Ob Kaufinteresse, Grundstücksangebot, Partnerschaft oder einfach eine
+          Frage — wir antworten innerhalb von <em style="color: var(--color-tann); font-weight: 500;">zwei Werktagen</em>.
+          Persönlich, von hier.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  {/* FORM + INFO */}
+  <section class="sec border-t border-[var(--color-line)]" style="background: var(--color-cream);">
+    <div class="ct-wide grid lg:grid-cols-12 gap-16">
+
+      <div class="lg:col-span-7" data-reveal>
+        <p class="text-xs font-mono uppercase tracking-[0.22em] mb-4" style="color: var(--color-olive);">— 01 · Nachricht</p>
+        <h2 class="mb-12" style="font-size: clamp(2rem, 4vw, 3rem);">
+          Was möchten Sie <em style="color: var(--color-olive); font-weight: 300;">besprechen</em>?
+        </h2>
+
+        <form
+          id="kontaktform"
+          action="https://api.web3forms.com/submit"
+          method="POST"
+          class="space-y-10"
+        >
+          <input type="hidden" name="access_key" value={WEB3FORMS_KEY} />
+          <input type="hidden" name="from_name" value="VERO Wohnbau Website" />
+          <input type="hidden" name="subject" value="Neue Nachricht über vero-wohnbau.de" />
+          <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off" />
+
+          <div class="grid md:grid-cols-2 gap-8">
+            <label class="block">
+              <span class="text-xs font-mono uppercase tracking-[0.22em]" style="color: var(--color-olive);">Vorname *</span>
+              <input type="text" name="vorname" required autocomplete="given-name" />
+            </label>
+            <label class="block">
+              <span class="text-xs font-mono uppercase tracking-[0.22em]" style="color: var(--color-olive);">Nachname *</span>
+              <input type="text" name="nachname" required autocomplete="family-name" />
+            </label>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-8">
+            <label class="block">
+              <span class="text-xs font-mono uppercase tracking-[0.22em]" style="color: var(--color-olive);">E-Mail *</span>
+              <input type="email" name="email" required autocomplete="email" />
+            </label>
+            <label class="block">
+              <span class="text-xs font-mono uppercase tracking-[0.22em]" style="color: var(--color-olive);">Telefon</span>
+              <input type="tel" name="telefon" autocomplete="tel" />
+            </label>
+          </div>
+
+          <label class="block">
+            <span class="text-xs font-mono uppercase tracking-[0.22em]" style="color: var(--color-olive);">Betreff</span>
+            <select name="betreff">
+              <option value="Allgemeine Anfrage" selected={betreffPrefill === ""}>Allgemeine Anfrage</option>
+              <option value="Kaufinteresse" selected={betreffPrefill === "Kaufinteresse"}>Kaufinteresse</option>
+              <option value="Ankauf" selected={betreffPrefill === "Ankauf"}>Grundstück anbieten</option>
+              <option value="Partnerschaft" selected={betreffPrefill === "Partnerschaft"}>Partnerschaft / Handwerk</option>
+              <option value="Newsletter" selected={betreffPrefill === "Newsletter"}>Auf Liste für neue Projekte</option>
+              <option value="Presse" selected={betreffPrefill === "Presse"}>Presse</option>
+            </select>
+          </label>
+
+          <label class="block">
+            <span class="text-xs font-mono uppercase tracking-[0.22em]" style="color: var(--color-olive);">Nachricht *</span>
+            <textarea name="nachricht" rows="6" required></textarea>
+          </label>
+
+          <label class="flex gap-3 items-start text-sm" style="color: var(--color-salbei);">
+            <input type="checkbox" name="datenschutz" required class="mt-1 w-4 h-4 shrink-0 accent-[var(--color-salbei)]" style="border-radius: 0;" />
+            <span>
+              Ich habe die <a href="/datenschutz" class="link-underline">Datenschutzerklärung</a> gelesen und stimme zu, dass meine Angaben zur Bearbeitung der Anfrage gespeichert werden. *
+            </span>
+          </label>
+
+          <button type="submit" class="btn btn-solid">
+            Nachricht senden
+          </button>
+
+          <p id="form-status" class="text-sm hidden" aria-live="polite"></p>
+        </form>
+      </div>
+
+      <aside class="lg:col-span-5 lg:pl-8 space-y-12">
+        <div data-reveal data-reveal-delay="200">
+          <p class="text-xs font-mono uppercase tracking-[0.22em] mb-4" style="color: var(--color-olive);">— 02 · Direkt</p>
+          <h2 class="mb-8" style="font-size: clamp(2rem, 4vw, 3rem);">
+            Lieber <em style="color: var(--color-olive); font-weight: 300;">anrufen</em>?
+          </h2>
+          <ul class="space-y-4">
+            <li>
+              <a href="tel:+49000000000" class="font-display font-light link-underline" style="font-size: clamp(1.25rem, 2vw, 1.6rem); color: var(--color-tann);">
+                [Telefon einsetzen]
+              </a>
+            </li>
+            <li>
+              <a href="mailto:kontakt@vero-wohnbau.de" class="font-display font-light link-underline" style="font-size: clamp(1.25rem, 2vw, 1.6rem); color: var(--color-tann);">
+                kontakt@vero-wohnbau.de
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div style="background: var(--color-tann); color: var(--color-cream);" class="p-10 lg:p-12 space-y-10" data-reveal data-reveal-delay="300">
+          <div>
+            <p class="text-xs font-mono uppercase tracking-[0.22em] mb-4" style="color: var(--color-olive-bright);">— Anschrift</p>
+            <address class="not-italic leading-relaxed text-lg font-display font-light" style="color: var(--color-cream);">
+              VERO Wohnbau GmbH<br />
+              [Straße einsetzen]<br />
+              83471 Berchtesgaden
+            </address>
+          </div>
+
+          <div style="border-top: 1px solid rgba(240,237,228,0.16); padding-top: 2rem;">
+            <p class="text-xs font-mono uppercase tracking-[0.22em] mb-4" style="color: var(--color-olive-bright);">— Bürozeiten</p>
+            <p class="leading-relaxed text-base" style="color: color-mix(in oklab, var(--color-cream) 88%, transparent);">
+              Montag – Freitag<br />
+              09:00 – 17:00 Uhr<br /><br />
+              Termine außerhalb gerne nach Vereinbarung.
+            </p>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const wireForm = () => {
+    const form = document.getElementById("kontaktform") as HTMLFormElement | null;
+    const status = document.getElementById("form-status") as HTMLParagraphElement | null;
+    if (!form || !status) return;
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      status.classList.remove("hidden");
+      status.textContent = "Wird gesendet…";
+      status.style.color = "var(--color-salbei)";
+
+      try {
+        const res = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          body: data,
+        });
+        const result = await res.json();
+        if (result.success) {
+          status.textContent = "Vielen Dank — Ihre Nachricht ist angekommen. Wir antworten innerhalb von zwei Werktagen.";
+          status.style.color = "var(--color-tann)";
+          form.reset();
+        } else {
+          throw new Error(result.message || "Fehler");
+        }
+      } catch {
+        status.textContent = "Etwas ist schiefgegangen. Bitte versuchen Sie es noch einmal oder schreiben Sie an kontakt@vero-wohnbau.de.";
+        status.style.color = "#a04040";
+      }
+    });
+  };
+
+  wireForm();
+  document.addEventListener("astro:page-load", wireForm);
+</script>

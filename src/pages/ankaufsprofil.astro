@@ -1,0 +1,192 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const kriterien = [
+  { label: "Region", wert: "Berchtesgadener Land", detail: "Schwerpunkt Schönau, Königssee, Berchtesgaden, Marktschellenberg" },
+  { label: "Größe", wert: "500 – 5.000 m²", detail: "Grundstück oder Bestandsobjekt" },
+  { label: "Objektart", wert: "Bau & Bestand", detail: "Baugrundstücke, Bestandsobjekte, Hofstellen, Abbruchobjekte" },
+  { label: "Zustand", wert: "Beliebig", detail: "auch sanierungsbedürftig oder mit Altlasten" },
+  { label: "Bebauung", wert: "B-Plan in Aussicht", detail: "vorhanden, in Aufstellung oder mit konkreter Perspektive" },
+  { label: "Eigentum", wert: "Klar geregelt", detail: "lastenfrei oder ablösbar — wir prüfen alle Konstellationen" },
+];
+
+const ablauf = [
+  { schritt: "01", titel: "Sie melden sich.", text: "Per Formular, E-Mail oder Telefon. Mit ein paar Eckdaten zum Objekt — mehr brauchen wir nicht für den ersten Kontakt." },
+  { schritt: "02", titel: "Erstes Gespräch.", text: "Wir hören zu, prüfen die Lage, klären offene Fragen. Diskret und ohne Pflicht zu irgendetwas." },
+  { schritt: "03", titel: "Vor-Ort-Termin.", text: "Wenn beide Seiten weitermachen wollen, schauen wir uns das Objekt persönlich an." },
+  { schritt: "04", titel: "Angebot.", text: "Innerhalb von 14 Tagen — schriftlich, nachvollziehbar, mit klarer Begründung der Bewertung." },
+  { schritt: "05", titel: "Notar.", text: "Wenn alles passt, geht es zum Notar. Den Termin organisieren wir." },
+];
+---
+
+<Layout
+  title="Ankaufsprofil — VERO Wohnbau"
+  description="Grundstücke und Bestandsobjekte im Berchtesgadener Land — was wir kaufen und wie der Ablauf ist."
+  headerVariant="light"
+>
+
+  {/* HERO */}
+  <section class="relative h-[80svh] min-h-[560px] overflow-hidden">
+    <div class="absolute inset-0">
+      <img
+        src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=2200&q=85&auto=format&fit=crop"
+        alt="Berchtesgadener Landschaft"
+        class="w-full h-full object-cover ken-burns"
+      />
+      <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(26,36,26,0.3) 0%, rgba(26,36,26,0.5) 50%, rgba(26,36,26,0.85) 100%);"></div>
+    </div>
+
+    <div class="relative z-10 h-full flex flex-col justify-end pb-20 md:pb-28">
+      <div class="ct-wide grid lg:grid-cols-12 gap-8 items-end">
+        <div class="lg:col-span-9">
+          <p class="eyebrow mb-6" style="color: var(--color-olive-bright);">— Ankaufsprofil</p>
+          <h1 class="text-balance" style="color: var(--color-cream); font-weight: 200;" data-reveal>
+            Wir kaufen.<br />
+            <em style="color: var(--color-olive-bright); font-weight: 300;">Im Berchtesgadener Land.</em>
+          </h1>
+        </div>
+        <div class="lg:col-span-3 lg:pl-8" data-reveal data-reveal-delay="200">
+          <p class="text-base leading-relaxed" style="color: color-mix(in oklab, var(--color-cream) 88%, transparent);">
+            Wir suchen ständig. Wenn Sie ein Grundstück oder Bestandsobjekt
+            verkaufen möchten, lohnt sich ein Gespräch — auch wenn Sie noch
+            unsicher sind.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* KRITERIEN — editorial table */}
+  <section class="sec-tall" style="background: var(--color-cream);">
+    <div class="ct-wide grid lg:grid-cols-12 gap-12 mb-16">
+      <div class="lg:col-span-3" data-reveal>
+        <p class="eyebrow">— Kriterien</p>
+      </div>
+      <div class="lg:col-span-9" data-reveal data-reveal-delay="100">
+        <h2 class="text-balance">
+          Was uns <em style="color: var(--color-olive); font-weight: 300;">interessiert</em>.
+        </h2>
+      </div>
+    </div>
+
+    <div class="ct-wide">
+      <ul>
+        {kriterien.map((k, i) => (
+          <li
+            class="grid lg:grid-cols-12 gap-6 lg:gap-12 py-10 border-t border-[var(--color-line)] items-baseline"
+            data-reveal
+            data-reveal-delay={(i % 3) * 100 + ""}
+          >
+            <p class="lg:col-span-2 text-xs font-mono uppercase tracking-[0.22em]" style="color: var(--color-olive);">
+              {k.label}
+            </p>
+            <p
+              class="lg:col-span-4 font-display font-light"
+              style="font-size: clamp(1.5rem, 2.5vw, 2.25rem); line-height: 1.1; color: var(--color-tann);"
+            >
+              {k.wert}
+            </p>
+            <p class="lg:col-span-6 leading-relaxed" style="color: var(--color-salbei);">
+              {k.detail}
+            </p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  {/* ABLAUF — large numbered chapters */}
+  <section class="relative" style="background: var(--color-tann); color: var(--color-cream);">
+    <div class="ct-wide py-20 md:py-32">
+      <div class="grid lg:grid-cols-12 gap-12 mb-16">
+        <div class="lg:col-span-3" data-reveal>
+          <p class="eyebrow" style="color: var(--color-olive-bright);">— Ablauf</p>
+        </div>
+        <div class="lg:col-span-9" data-reveal data-reveal-delay="100">
+          <h2 class="text-balance" style="color: var(--color-cream);">
+            In <em style="color: var(--color-olive-bright); font-weight: 300;">fünf</em> Schritten.
+          </h2>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-px" style="background: rgba(240,237,228,0.12);">
+        {ablauf.map((s) => (
+          <div
+            class="p-8 lg:p-10 flex flex-col justify-between min-h-[260px]"
+            style="background: var(--color-tann);"
+            data-reveal
+          >
+            <p
+              class="font-display font-light"
+              style="font-size: clamp(3.5rem, 5vw, 5rem); color: var(--color-olive-bright); line-height: 0.9; letter-spacing: -0.04em;"
+            >
+              {s.schritt}
+            </p>
+            <div>
+              <h3 style="color: var(--color-cream); font-size: 1.5rem;">{s.titel}</h3>
+              <p class="mt-3 text-sm leading-relaxed" style="color: color-mix(in oklab, var(--color-cream) 75%, transparent);">
+                {s.text}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* PROMISES */}
+  <section class="sec-tall" style="background: var(--color-paper);">
+    <div class="ct-wide grid lg:grid-cols-12 gap-12">
+      <div class="lg:col-span-3" data-reveal>
+        <p class="eyebrow">— Versprechen</p>
+      </div>
+      <div class="lg:col-span-9">
+        <h2 class="mb-16 text-balance" data-reveal data-reveal-delay="100">
+          Was Sie von uns <em style="color: var(--color-olive); font-weight: 300;">erwarten</em> dürfen.
+        </h2>
+
+        <div class="space-y-2">
+          {[
+            { titel: "Diskretion.", text: "Niemand erfährt, dass Sie verkaufen, solange Sie nicht möchten." },
+            { titel: "Klare Bewertung.", text: "Wir erklären, wie wir auf den Preis kommen — Zahlen statt Bauchgefühl." },
+            { titel: "Verbindlichkeit.", text: "Wenn wir kaufen, kaufen wir. Keine Nachverhandlungen, keine Hinhaltetaktik." },
+            { titel: "Region statt Konzern.", text: "Wir sind hier ansässig. Sie haben einen Ansprechpartner, kein Callcenter." },
+          ].map((v, i) => (
+            <div
+              class="grid lg:grid-cols-12 gap-6 py-8 border-t border-[var(--color-line)] items-baseline"
+              data-reveal
+              data-reveal-delay={(i % 4) * 100 + ""}
+            >
+              <p class="lg:col-span-1 text-xs font-mono uppercase tracking-[0.22em]" style="color: var(--color-olive);">
+                0{i + 1}
+              </p>
+              <h3 class="lg:col-span-4" style="font-size: clamp(1.5rem, 2.5vw, 2.25rem);">
+                {v.titel}
+              </h3>
+              <p class="lg:col-span-7 leading-relaxed" style="color: var(--color-salbei);">
+                {v.text}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* CTA */}
+  <section class="relative overflow-hidden" style="background: var(--color-cream);">
+    <div class="ct-wide sec-tall text-center max-w-4xl mx-auto">
+      <p class="eyebrow mb-8" data-reveal>— Erster Schritt</p>
+      <h2 class="text-balance mb-12" data-reveal data-reveal-delay="100">
+        Erzählen Sie uns vom <em style="color: var(--color-olive); font-weight: 300;">Objekt</em>.
+      </h2>
+      <p class="text-lg leading-relaxed max-w-xl mx-auto" style="color: var(--color-salbei);" data-reveal data-reveal-delay="200">
+        Ein paar Sätze reichen für den Anfang. Lage, ungefähre Größe, was Sie
+        sich vorstellen — den Rest besprechen wir.
+      </p>
+      <div class="mt-12 flex flex-wrap justify-center gap-4" data-reveal data-reveal-delay="300">
+        <a href="/kontakt?betreff=Ankauf" class="btn btn-solid">Objekt anbieten</a>
+      </div>
+    </div>
+  </section>
+</Layout>

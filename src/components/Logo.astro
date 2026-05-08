@@ -1,0 +1,42 @@
+---
+interface Props {
+  /** "dark" = Salbei-Logo (für helle Hintergründe), "light" = Hell-Logo (für dunkle Hintergründe) */
+  variant?: "dark" | "light";
+  /** Größe in px (Höhe). Default 80px für Header. */
+  size?: number;
+  /** Nur das V-Symbol, ohne Wortmarke und Tagline */
+  markOnly?: boolean;
+  class?: string;
+}
+
+const {
+  variant = "dark",
+  size = 80,
+  markOnly = false,
+  class: className = "",
+} = Astro.props;
+
+const src = markOnly
+  ? "/assets/vero-logo-mark.png"
+  : variant === "light"
+    ? "/assets/vero-logo-light.png"
+    : "/assets/vero-logo-salbei.png";
+
+const alt = "VERO Wohnbau";
+---
+
+<a
+  href="/"
+  class={`block group transition-opacity hover:opacity-80 ${className}`}
+  aria-label="VERO Wohnbau – Startseite"
+>
+  <img
+    src={src}
+    alt={alt}
+    height={size}
+    style={`height: ${size}px; width: auto; display: block;`}
+    class="transition-transform duration-700 group-hover:-translate-y-px"
+    loading="eager"
+    decoding="async"
+  />
+</a>

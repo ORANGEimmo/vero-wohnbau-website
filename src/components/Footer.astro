@@ -1,0 +1,96 @@
+---
+import Logo from "./Logo.astro";
+---
+
+<footer class="relative overflow-hidden" style="background: var(--color-tann-deep); color: var(--color-cream);">
+
+  {/* HUGE TAGLINE STATEMENT */}
+  <section class="relative">
+    <div class="ct-wide pt-24 md:pt-32 pb-16">
+      <p class="eyebrow mb-12" style="color: var(--color-olive-bright);" data-reveal>— Versprechen</p>
+      <h2
+        class="font-display text-balance"
+        style="color: var(--color-cream); font-weight: 200; font-size: clamp(3rem, 8vw, 8rem); line-height: 0.92; letter-spacing: -0.04em;"
+        data-reveal
+        data-reveal-delay="100"
+      >
+        wahr.<br />
+        <span class="italic" style="color: var(--color-olive-bright); font-weight: 300;">echt.</span><br />
+        wirklich.
+      </h2>
+    </div>
+  </section>
+
+  {/* MAIN GRID */}
+  <section class="border-t" style="border-color: rgba(240,237,228,0.12);">
+    <div class="ct-wide py-20 md:py-24 grid lg:grid-cols-12 gap-12">
+
+      <div class="lg:col-span-5">
+        <Logo variant="light" size={280} />
+        <p class="mt-10 leading-relaxed max-w-md" style="color: color-mix(in oklab, var(--color-cream) 75%, transparent);">
+          VERO Wohnbau realisiert Immobilien im Berchtesgadener Land — ehrlich
+          gebaut, mit natürlichen Materialien und Wurzeln in der Region.
+        </p>
+
+        <ul class="mt-12 space-y-2 text-sm" style="color: color-mix(in oklab, var(--color-cream) 88%, transparent);">
+          <li><a href="tel:+49000000000" class="link-underline">[Telefon einsetzen]</a></li>
+          <li><a href="mailto:kontakt@vero-wohnbau.de" class="link-underline">kontakt@vero-wohnbau.de</a></li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-2">
+        <p class="text-xs font-mono uppercase tracking-[0.22em] mb-6" style="color: var(--color-olive-bright);">— 01</p>
+        <p class="text-sm font-mono uppercase tracking-[0.18em] mb-4" style="color: color-mix(in oklab, var(--color-cream) 60%, transparent);">Navigation</p>
+        <ul class="space-y-3 text-base" style="color: color-mix(in oklab, var(--color-cream) 90%, transparent);">
+          <li><a href="/projekte" class="link-underline">Projekte</a></li>
+          <li><a href="/ankaufsprofil" class="link-underline">Ankaufsprofil</a></li>
+          <li><a href="/ueber-uns" class="link-underline">Über uns</a></li>
+          <li><a href="/partner" class="link-underline">Partner</a></li>
+          <li><a href="/kontakt" class="link-underline">Kontakt</a></li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-2">
+        <p class="text-xs font-mono uppercase tracking-[0.22em] mb-6" style="color: var(--color-olive-bright);">— 02</p>
+        <p class="text-sm font-mono uppercase tracking-[0.18em] mb-4" style="color: color-mix(in oklab, var(--color-cream) 60%, transparent);">Rechtliches</p>
+        <ul class="space-y-3 text-base" style="color: color-mix(in oklab, var(--color-cream) 90%, transparent);">
+          <li><a href="/impressum" class="link-underline">Impressum</a></li>
+          <li><a href="/datenschutz" class="link-underline">Datenschutz</a></li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-3">
+        <p class="text-xs font-mono uppercase tracking-[0.22em] mb-6" style="color: var(--color-olive-bright);">— 03</p>
+        <p class="text-sm font-mono uppercase tracking-[0.18em] mb-4" style="color: color-mix(in oklab, var(--color-cream) 60%, transparent);">Anschrift</p>
+        <address class="not-italic leading-relaxed text-base" style="color: color-mix(in oklab, var(--color-cream) 90%, transparent);">
+          VERO Wohnbau GmbH<br />
+          [Straße einsetzen]<br />
+          83471 Berchtesgaden<br />
+          Bayern · Deutschland
+        </address>
+
+        <p class="mt-8 text-xs font-mono uppercase tracking-[0.18em]" style="color: color-mix(in oklab, var(--color-cream) 50%, transparent);">
+          47°35′N · 12°59′E
+        </p>
+      </div>
+    </div>
+  </section>
+
+  {/* COLOPHON */}
+  <section class="border-t" style="border-color: rgba(240,237,228,0.12);">
+    <div class="ct-wide py-8 flex flex-col md:flex-row justify-between gap-4 text-xs font-mono uppercase tracking-[0.22em]" style="color: color-mix(in oklab, var(--color-cream) 50%, transparent);">
+      <p>© {new Date().getFullYear()} VERO Wohnbau GmbH</p>
+      <p class="hidden md:block">Bauträger · Berchtesgadener Land</p>
+      <p>Stand 2026 · v 1.0</p>
+    </div>
+  </section>
+
+  {/* DECORATIVE OVERSIZED MARK */}
+  <div
+    class="absolute -bottom-32 -right-12 pointer-events-none select-none font-display italic"
+    style="font-size: clamp(20rem, 40vw, 44rem); line-height: 0.85; color: rgba(240,237,228,0.025); font-weight: 200;"
+    aria-hidden="true"
+  >
+    VERO
+  </div>
+</footer>
