@@ -107,14 +107,18 @@ const principles = [
   >
     <div class="marquee no-scrollbar">
       <div class="marquee__track font-display font-light italic" style="font-size: clamp(3rem, 8vw, 6rem); line-height: 1;">
-        {Array.from({ length: 6 }).map(() => (
-          <span class="flex items-center gap-16 pr-16">
+        {Array.from({ length: 5 }).map(() => (
+          <span class="flex items-center gap-12 pr-12">
+            <span style="font-style: normal; font-weight: 400;">VERO</span>
+            <span style="color: var(--color-olive-bright);">—</span>
+            <span class="font-mono" style="font-size: clamp(0.8rem, 1.4vw, 1.1rem); font-style: normal; color: color-mix(in oklab, var(--color-cream) 55%, transparent); letter-spacing: 0.1em; align-self: center;">aus dem Italienischen</span>
+            <span style="color: var(--color-olive-bright);">—</span>
             <span>wahr</span>
             <span style="color: var(--color-olive-bright);">·</span>
             <span>echt</span>
             <span style="color: var(--color-olive-bright);">·</span>
             <span>wirklich</span>
-            <span style="color: var(--color-olive-bright);">·</span>
+            <span style="color: var(--color-olive-bright);">—</span>
           </span>
         ))}
       </div>
@@ -337,8 +341,8 @@ const principles = [
     <div class="grid lg:grid-cols-12 min-h-[70vh]">
       <div class="lg:col-span-5 relative" data-reveal-image>
         <img
-          src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1200&q=85&auto=format&fit=crop"
-          alt="Bergland im Berchtesgadener Land"
+          src="/assets/berchtesgaden.jpeg"
+          alt="Berchtesgaden mit Watzmann im Herbst"
           class="absolute inset-0 w-full h-full object-cover"
           loading="lazy"
         />
