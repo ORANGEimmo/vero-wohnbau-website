@@ -136,89 +136,82 @@ const headerStyle = [
 </div>
 
 <script>
-  type NavState = {
-    fg: string;
-    accent: string;
-    rule: string;
-  };
+  type NavState = { fg: string; accent: string; rule: string };
 
   const STATES: Record<"lightTop" | "darkTop" | "scrolled", NavState> = {
-    lightTop: {
-      fg: "var(--color-cream)",
-      accent: "var(--color-olive-bright)",
-      rule: "rgba(240,237,228,0.18)",
-    },
-    darkTop: {
-      fg: "var(--color-tann)",
-      accent: "var(--color-olive)",
-      rule: "var(--color-line)",
-    },
-    scrolled: {
-      fg: "var(--color-tann)",
-      accent: "var(--color-olive)",
-      rule: "var(--color-line)",
-    },
+    lightTop:  { fg: "var(--color-cream)",  accent: "var(--color-olive-bright)", rule: "rgba(240,237,228,0.18)" },
+    darkTop:   { fg: "var(--color-tann)",   accent: "var(--color-olive)",        rule: "var(--color-line)"      },
+    scrolled:  { fg: "var(--color-tann)",   accent: "var(--color-olive)",        rule: "var(--color-line)"      },
   };
 
   const apply = (header: HTMLElement, state: NavState) => {
-    header.style.setProperty("--nav-fg", state.fg);
+    header.style.setProperty("--nav-fg",     state.fg);
     header.style.setProperty("--nav-accent", state.accent);
-    header.style.setProperty("--nav-rule", state.rule);
+    header.style.setProperty("--nav-rule",   state.rule);
   };
 
+  // AbortController cancels all previous listeners on every re-init (Astro page transitions)
+  let ctrl: AbortController | null = null;
+
   const init = () => {
-    const header = document.getElementById("site-header") as HTMLElement | null;
-    const rule = document.getElementById("header-rule");
-    const toggle = document.getElementById("menu-toggle");
-    const drawer = document.getElementById("mobile-nav");
+    ctrl?.abort();
+    ctrl = new AbortController();
+    const { signal } = ctrl;
+
+    const header    = document.getElementById("site-header") as HTMLElement | null;
+    const rule      = document.getElementById("header-rule");
+    const toggle    = document.getElementById("menu-toggle");
+    const drawer    = document.getElementById("mobile-nav") as HTMLElement | null;
     const logoLight = document.getElementById("logo-light") as HTMLImageElement | null;
-    const logoDark = document.getElementById("logo-dark") as HTMLImageElement | null;
+    const logoDark  = document.getElementById("logo-dark")  as HTMLImageElement | null;
 
     if (header) {
-      const variant = header.dataset.variant || "dark";
-      const isLightInitial = variant === "light";
+      const isLight = (header.dataset.variant || "dark") === "light";
 
       const onScroll = () => {
         const scrolled = window.scrollY > 32;
         if (scrolled) {
-          header.style.background = "color-mix(in oklab, var(--color-cream) 92%, transparent)";
+          header.style.background    = "color-mix(in oklab, var(--color-cream) 92%, transparent)";
           header.style.backdropFilter = "blur(12px)";
           apply(header, STATES.scrolled);
-          if (rule) rule.style.opacity = "1";
+          if (rule)      rule.style.opacity      = "1";
           if (logoLight) logoLight.style.opacity = "0";
-          if (logoDark) logoDark.style.opacity = "1";
+          if (logoDark)  logoDark.style.opacity  = "1";
         } else {
-          header.style.background = "transparent";
+          header.style.background    = "transparent";
           header.style.backdropFilter = "none";
-          apply(header, isLightInitial ? STATES.lightTop : STATES.darkTop);
-          if (rule) rule.style.opacity = "0";
-          if (logoLight) logoLight.style.opacity = isLightInitial ? "1" : "0";
-          if (logoDark) logoDark.style.opacity = isLightInitial ? "0" : "1";
+          apply(header, isLight ? STATES.lightTop : STATES.darkTop);
+          if (rule)      rule.style.opacity      = "0";
+          if (logoLight) logoLight.style.opacity = isLight ? "1" : "0";
+          if (logoDark)  logoDark.style.opacity  = isLight ? "0" : "1";
         }
       };
       onScroll();
-      window.addEventListener("scroll", onScroll, { passive: true });
+      window.addEventListener("scroll", onScroll, { passive: true, signal });
     }
 
-    const closeDrawer = () => {
-      if (drawer) drawer.style.display = "none";
-      toggle?.setAttribute("aria-expanded", "false");
-      document.body.style.overflow = "";
-    };
-
-    const openDrawer = () => {
-      if (drawer) drawer.style.display = "flex";
-      toggle?.setAttribute("aria-expanded", "true");
-      document.body.style.overflow = "hidden";
-    };
-
     if (toggle && drawer) {
-      toggle.addEventListener("click", () => {
-        drawer.style.display === "flex" ? closeDrawer() : openDrawer();
-      });
+      const close = () => {
+        drawer.style.display = "none";
+        toggle.setAttribute("aria-expanded", "false");
+        document.body.style.overflow = "";
+      };
+      const open = () => {
+        drawer.style.display = "flex";
+        toggle.setAttribute("aria-expanded", "true");
+        document.body.style.overflow = "hidden";
+      };
 
-      document.getElementById("menu-close")?.addEventListener("click", closeDrawer);
-      drawer.querySelectorAll("a").forEach(a => a.addEventListener("click", closeDrawer));
+      toggle.addEventListener("click", () => {
+        drawer.style.display === "flex" ? close() : open();
+      }, { signal });
+
+      document.getElementById("menu-close")
+        ?.addEventListener("click", close, { signal });
+
+      drawer.querySelectorAll("a").forEach(a =>
+        a.addEventListener("click", close, { signal })
+      );
     }
   };
 
