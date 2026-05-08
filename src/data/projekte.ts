@@ -22,11 +22,11 @@ export const projekte: Projekt[] = [
     ort: "Schönau am Königssee",
     status: "In Bau",
     jahr: "Fertigstellung Q2 2026",
-    hero: "/assets/gut-hirschenlehen-hero.jpg",
+    hero: "/assets/gut-hirschenlehen-hero.webp",
     gallery: [
-      "/assets/gut-hirschenlehen-front.png",
-      "/assets/gut-hirschenlehen-bath.jpg",
-      "/assets/gut-hirschenlehen-living.jpg",
+      "/assets/gut-hirschenlehen-front.webp",
+      "/assets/gut-hirschenlehen-bath.webp",
+      "/assets/gut-hirschenlehen-living.webp",
     ],
     beschreibung:
       "Acht Wohneinheiten inmitten der Bergwelt von Schönau am Königssee. Zeitgenössischer Landhausstil, kombiniert mit bayerischer Bautradition. Holz, Stein und porosiertes Mauerwerk — eine Fassade, die zur umliegenden Landschaft passt und mit ihr altert.",
@@ -77,11 +77,11 @@ export const projekte: Projekt[] = [
     ort: "Berchtesgaden",
     status: "In Vorbereitung",
     jahr: "Geplante Fertigstellung 2027",
-    hero: "/assets/chalet-hochwald-hero.jpg",
+    hero: "/assets/chalet-hochwald-hero.webp",
     gallery: [
-      "/assets/chalet-hochwald-01.jpg",
-      "/assets/chalet-hochwald-03.jpg",
-      "/assets/chalet-hochwald-02.jpg",
+      "/assets/chalet-hochwald-01.webp",
+      "/assets/chalet-hochwald-03.webp",
+      "/assets/chalet-hochwald-02.webp",
     ],
     beschreibung:
       "Ein zurückhaltendes Chalet-Ensemble am Waldrand von Berchtesgaden. Vier Einheiten, je mit eigenem Eingang, Holzfassade und großzügigem Übergang zur umliegenden Natur. Details folgen — wir nehmen uns Zeit, bis das Konzept stimmt.",
