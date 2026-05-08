@@ -107,8 +107,8 @@ const headerStyle = [
 {/* Mobile drawer — outside header to avoid backdrop-filter containing block bug */}
 <div
   id="mobile-nav"
-  class="hidden fixed inset-0 z-50 flex flex-col items-start justify-center px-8 lg:hidden"
-  style="background: var(--color-tann); color: var(--color-cream);"
+  class="fixed inset-0 z-50 flex-col items-start justify-center px-8"
+  style="display:none; background: var(--color-tann); color: var(--color-cream);"
 >
   <button
     id="menu-close"
@@ -201,20 +201,23 @@ const headerStyle = [
     }
 
     const closeDrawer = () => {
-      drawer?.classList.add("hidden");
+      if (drawer) drawer.style.display = "none";
       toggle?.setAttribute("aria-expanded", "false");
       document.body.style.overflow = "";
     };
 
+    const openDrawer = () => {
+      if (drawer) drawer.style.display = "flex";
+      toggle?.setAttribute("aria-expanded", "true");
+      document.body.style.overflow = "hidden";
+    };
+
     if (toggle && drawer) {
       toggle.addEventListener("click", () => {
-        const open = drawer.classList.toggle("hidden") === false;
-        toggle.setAttribute("aria-expanded", String(open));
-        document.body.style.overflow = open ? "hidden" : "";
+        drawer.style.display === "flex" ? closeDrawer() : openDrawer();
       });
 
       document.getElementById("menu-close")?.addEventListener("click", closeDrawer);
-
       drawer.querySelectorAll("a").forEach(a => a.addEventListener("click", closeDrawer));
     }
   };
