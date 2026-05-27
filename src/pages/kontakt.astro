@@ -158,13 +158,25 @@ const betreffPrefill = url.searchParams.get("betreff") || "";
 </Layout>
 
 <script>
+  // AbortController bricht den vorherigen Listener bei jedem Neu-Einhängen ab
+  // (Astro führt dieses Skript bei View-Transitions erneut aus) — so ist der
+  // Submit-Handler immer GENAU einmal gebunden, sonst doppelter Versand.
+  let formCtrl: AbortController | null = null;
+
   const wireForm = () => {
     const form = document.getElementById("kontaktform") as HTMLFormElement | null;
     const status = document.getElementById("form-status") as HTMLParagraphElement | null;
     if (!form || !status) return;
 
+    formCtrl?.abort();
+    formCtrl = new AbortController();
+
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
+      const button = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+      if (button?.disabled) return;
+      if (button) button.disabled = true;
+
       const data = new FormData(form);
       status.classList.remove("hidden");
       status.textContent = "Wird gesendet…";
@@ -186,8 +198,10 @@ const betreffPrefill = url.searchParams.get("betreff") || "";
       } catch {
         status.textContent = "Etwas ist schiefgegangen. Bitte versuchen Sie es noch einmal oder schreiben Sie an kontakt@vero-wohnbau.de.";
         status.style.color = "#a04040";
+      } finally {
+        if (button) button.disabled = false;
       }
-    });
+    }, { signal: formCtrl.signal });
   };
 
   wireForm();
