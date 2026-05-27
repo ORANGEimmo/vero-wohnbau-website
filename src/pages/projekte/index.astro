@@ -3,24 +3,24 @@ import Layout from "../../layouts/Layout.astro";
 import { projekte } from "../../data/projekte";
 ---
 
-<Layout title="Projekte — VERO Wohnbau" description="Aktuelle Bauprojekte von VERO Wohnbau im Berchtesgadener Land.">
+<Layout title="Projekte — VERO Wohnbau" description="Aktuelle Bauprojekte von VERO Wohnbau im Berchtesgadener Land." headerVariant="light">
 
   {/* ────────── HEADER ────────── */}
-  <section class="pt-56 pb-16 md:pt-64 md:pb-24" style="background: var(--color-cream);">
+  <section class="pt-56 pb-16 md:pt-64 md:pb-24" style="background: var(--color-tann); color: var(--color-cream);">
     <div class="ct-wide grid lg:grid-cols-12 gap-12">
       <div class="lg:col-span-3" data-reveal>
-        <p class="eyebrow">— Index 01</p>
+        <p class="eyebrow" style="color: var(--color-olive-bright);">— Index 01</p>
       </div>
 
       <div class="lg:col-span-9">
-        <h1 class="text-balance" data-reveal data-reveal-delay="100">
+        <h1 class="text-balance" style="color: var(--color-cream);" data-reveal data-reveal-delay="100">
           Häuser, die zur<br />
-          <em style="color: var(--color-olive); font-weight: 300;">Landschaft</em> gehören.
+          <em style="color: var(--color-olive-bright); font-weight: 300;">Landschaft</em> gehören.
         </h1>
 
         <p
           class="mt-12 text-lg max-w-2xl leading-relaxed"
-          style="color: var(--color-salbei);"
+          style="color: color-mix(in oklab, var(--color-cream) 80%, transparent);"
           data-reveal
           data-reveal-delay="300"
         >

@@ -10,29 +10,29 @@ const betreffPrefill = url.searchParams.get("betreff") || "";
 <Layout
   title="Kontakt — VERO Wohnbau"
   description="Schreiben oder rufen Sie an. Wir antworten innerhalb von zwei Werktagen."
-  headerVariant="dark"
+  headerVariant="light"
 >
 
   {/* HEADER */}
-  <section class="pt-56 pb-20 md:pt-64 md:pb-28" style="background: var(--color-cream);">
+  <section class="pt-56 pb-20 md:pt-64 md:pb-28" style="background: var(--color-tann); color: var(--color-cream);">
     <div class="ct-wide grid lg:grid-cols-12 gap-12">
       <div class="lg:col-span-3" data-reveal>
-        <p class="eyebrow">— Kontakt</p>
+        <p class="eyebrow" style="color: var(--color-olive-bright);">— Kontakt</p>
       </div>
 
       <div class="lg:col-span-9">
-        <h1 class="text-balance" data-reveal data-reveal-delay="100">
+        <h1 class="text-balance" style="color: var(--color-cream);" data-reveal data-reveal-delay="100">
           Schreiben Sie uns.<br />
-          Wir <em style="color: var(--color-olive); font-weight: 300;">hören zu</em>.
+          Wir <em style="color: var(--color-olive-bright); font-weight: 300;">hören zu</em>.
         </h1>
         <p
           class="mt-12 text-lg max-w-2xl leading-relaxed"
-          style="color: var(--color-salbei);"
+          style="color: color-mix(in oklab, var(--color-cream) 80%, transparent);"
           data-reveal
           data-reveal-delay="300"
         >
           Ob Kaufinteresse, Grundstücksangebot, Partnerschaft oder einfach eine
-          Frage — wir antworten innerhalb von <em style="color: var(--color-tann); font-weight: 500;">zwei Werktagen</em>.
+          Frage — wir antworten innerhalb von <em style="color: var(--color-olive-bright); font-weight: 500;">zwei Werktagen</em>.
           Persönlich, von hier.
         </p>
       </div>
