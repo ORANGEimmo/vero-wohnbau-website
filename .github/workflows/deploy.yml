@@ -44,3 +44,19 @@ jobs:
             -e "ssh -i ~/.ssh/deploy_key -p 22" \
             dist/ \
             "${VPS_USER}@${VPS_HOST}:${VPS_TARGET}"
+
+      - name: Deploy Caddy config
+        env:
+          VPS_USER: ${{ secrets.VPS_USER }}
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+        run: |
+          # Caddy-Site-Config nach /etc/caddy/conf.d/ (dort von der Haupt-Caddyfile
+          # via `import` eingebunden). conf.d gehört dem Deploy-User, daher kein sudo.
+          rsync -avz \
+            -e "ssh -i ~/.ssh/deploy_key -p 22" \
+            deploy/caddy/vero-wohnbau.caddy \
+            "${VPS_USER}@${VPS_HOST}:/etc/caddy/conf.d/vero-wohnbau.caddy"
+          # Validieren, dann via Admin-API neu laden (kein sudo nötig).
+          ssh -i ~/.ssh/deploy_key "${VPS_USER}@${VPS_HOST}" \
+            'caddy validate --config /etc/caddy/Caddyfile --adapter caddyfile \
+              && caddy reload --config /etc/caddy/Caddyfile --adapter caddyfile'
