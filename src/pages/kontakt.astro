@@ -13,28 +13,32 @@ const betreffPrefill = url.searchParams.get("betreff") || "";
   headerVariant="light"
 >
 
-  {/* HEADER */}
-  <section class="pt-56 pb-20 md:pt-64 md:pb-28" style="background: var(--color-tann); color: var(--color-cream);">
-    <div class="ct-wide grid lg:grid-cols-12 gap-12">
-      <div class="lg:col-span-3" data-reveal>
-        <p class="eyebrow" style="color: var(--color-olive-bright);">— Kontakt</p>
-      </div>
+  {/* HERO */}
+  <section class="relative h-[70svh] min-h-[520px] overflow-hidden">
+    <div class="absolute inset-0">
+      <img
+        src="/assets/prinzip-03-anspruch.webp"
+        alt="Modernes Wohnhaus in Holzbauweise vor Bergkulisse"
+        class="w-full h-full object-cover ken-burns"
+      />
+      <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(26,36,26,0.3) 0%, rgba(26,36,26,0.5) 50%, rgba(26,36,26,0.85) 100%);"></div>
+    </div>
 
-      <div class="lg:col-span-9">
-        <h1 class="text-balance" style="color: var(--color-cream);" data-reveal data-reveal-delay="100">
-          Schreiben Sie uns.<br />
-          Wir <em style="color: var(--color-olive-bright); font-weight: 300;">hören zu</em>.
-        </h1>
-        <p
-          class="mt-12 text-lg max-w-2xl leading-relaxed"
-          style="color: color-mix(in oklab, var(--color-cream) 80%, transparent);"
-          data-reveal
-          data-reveal-delay="300"
-        >
-          Ob Kaufinteresse, Grundstücksangebot, Partnerschaft oder einfach eine
-          Frage — wir antworten innerhalb von <em style="color: var(--color-olive-bright); font-weight: 500;">zwei Werktagen</em>.
-          Persönlich, von hier.
-        </p>
+    <div class="relative z-10 h-full flex flex-col justify-end pb-20 md:pb-28">
+      <div class="ct-wide grid lg:grid-cols-12 gap-8 items-end">
+        <div class="lg:col-span-9">
+          <p class="eyebrow mb-6" style="color: var(--color-olive-bright);">— Kontakt</p>
+          <h1 class="text-balance" style="color: var(--color-cream); font-weight: 200;" data-reveal>
+            Schreiben Sie uns.<br />
+            Wir <em style="color: var(--color-olive-bright); font-weight: 300;">hören zu</em>.
+          </h1>
+        </div>
+        <div class="lg:col-span-3 lg:pl-8" data-reveal data-reveal-delay="200">
+          <p class="text-base leading-relaxed" style="color: color-mix(in oklab, var(--color-cream) 88%, transparent);">
+            Ob Kaufinteresse, Grundstücksangebot, Partnerschaft oder einfach eine
+            Frage — wir antworten innerhalb von <em style="color: var(--color-cream); font-weight: 500;">zwei Werktagen</em>. Persönlich, von hier.
+          </p>
+        </div>
       </div>
     </div>
   </section>
