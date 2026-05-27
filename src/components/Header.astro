@@ -43,23 +43,23 @@ const headerStyle = [
       href="/"
       class="block relative group"
       aria-label="VERO Wohnbau – Startseite"
-      style="height: 128px;"
+      style="height: clamp(120px, 10vw, 150px);"
     >
       <img
         id="logo-light"
-        src="/assets/vero-logo-light-noclaim.png"
+        src="/assets/vero-logo-header-light.png"
         alt="VERO Wohnbau"
         class="absolute inset-0 transition-opacity duration-500"
-        style={`height: 128px; width: auto; opacity: ${isLight ? 1 : 0};`}
+        style={`height: clamp(120px, 10vw, 150px); width: auto; opacity: ${isLight ? 1 : 0};`}
         loading="eager"
         decoding="async"
       />
       <img
         id="logo-dark"
-        src="/assets/vero-logo-salbei-noclaim.png"
+        src="/assets/vero-logo-header-dark.png"
         alt="VERO Wohnbau"
         class="block transition-opacity duration-500"
-        style={`height: 128px; width: auto; opacity: ${isLight ? 0 : 1};`}
+        style={`height: clamp(120px, 10vw, 150px); width: auto; opacity: ${isLight ? 0 : 1};`}
         loading="eager"
         decoding="async"
       />
