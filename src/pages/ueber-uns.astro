@@ -1,27 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
 
-const team = [
-  {
-    name: "[Name einsetzen]",
-    rolle: "Geschäftsführung",
-    bio: "Aufgewachsen im Berchtesgadener Land, [Studium/Ausbildung einsetzen]. Über 15 Jahre Bauerfahrung in der Region.",
-    img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900&h=1200&q=85&auto=format&fit=crop&crop=faces",
-  },
-  {
-    name: "[Name einsetzen]",
-    rolle: "Bauleitung",
-    bio: "[Kurzer Werdegang einsetzen] — verantwortlich für die operative Umsetzung auf der Baustelle.",
-    img: "https://images.unsplash.com/photo-1463453091185-61582044d556?w=900&h=1200&q=85&auto=format&fit=crop&crop=faces",
-  },
-  {
-    name: "[Name einsetzen]",
-    rolle: "Vertrieb & Kunden",
-    bio: "[Kurzer Werdegang einsetzen] — erste Anlaufstelle für Käufer und Verkäufer.",
-    img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=900&h=1200&q=85&auto=format&fit=crop&crop=faces",
-  },
-];
-
 const werte = [
   { num: "01", titel: "Ehrlich.", text: "Wir benennen Schwächen, bevor jemand fragt. Eine Holzfassade vergraut. Eine Baustelle ist laut. Ein KfW-40-Standard kostet mehr als ein Standardneubau. Das ist die Wahrheit — und damit fängt jedes gute Gespräch an." },
   { num: "02", titel: "Regional.", text: "Wir bauen, wo wir leben. Mit Handwerkern aus dem Landkreis, mit Materialien aus der Region wo es geht, mit Architekten, die die Topografie kennen. Region ist nicht Folklore, sondern Qualität." },
@@ -148,43 +127,6 @@ const werte = [
               {w.text}
             </p>
           </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  {/* TEAM */}
-  <section class="sec-tall" style="background: var(--color-paper);">
-    <div class="ct-wide">
-      <div class="grid lg:grid-cols-12 gap-12 mb-20">
-        <div class="lg:col-span-3" data-reveal>
-          <p class="eyebrow">— Team</p>
-        </div>
-        <div class="lg:col-span-9" data-reveal data-reveal-delay="100">
-          <h2 class="text-balance">
-            Die <em style="color: var(--color-olive); font-weight: 300;">Menschen</em> dahinter.
-          </h2>
-        </div>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-8 lg:gap-12">
-        {team.map((t, i) => (
-          <article data-reveal data-reveal-delay={(i % 3) * 150 + ""}>
-            <div class="aspect-[3/4] overflow-hidden">
-              <img
-                src={t.img}
-                alt={t.name}
-                class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)]"
-                loading="lazy"
-                data-reveal-image
-              />
-            </div>
-            <p class="mt-8 font-mono text-xs uppercase tracking-[0.22em]" style="color: var(--color-olive);">
-              — 0{i + 1} · {t.rolle}
-            </p>
-            <h3 class="mt-3" style="font-size: clamp(1.5rem, 2vw, 1.75rem);">{t.name}</h3>
-            <p class="mt-4 text-sm leading-relaxed" style="color: var(--color-salbei);">{t.bio}</p>
-          </article>
         ))}
       </div>
     </div>
