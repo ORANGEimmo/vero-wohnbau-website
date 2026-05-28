@@ -126,8 +126,8 @@ const betreffPrefill = url.searchParams.get("betreff") || "";
           </h2>
           <ul class="space-y-4">
             <li>
-              <a href="mailto:kontakt@vero-wohnbau.de" class="font-display font-light link-underline" style="font-size: clamp(1.25rem, 2vw, 1.6rem); color: var(--color-tann);">
-                kontakt@vero-wohnbau.de
+              <a href="mailto:info@vero-wohnbau.de" class="font-display font-light link-underline" style="font-size: clamp(1.25rem, 2vw, 1.6rem); color: var(--color-tann);">
+                info@vero-wohnbau.de
               </a>
             </li>
           </ul>
@@ -196,7 +196,7 @@ const betreffPrefill = url.searchParams.get("betreff") || "";
           throw new Error(result.message || "Fehler");
         }
       } catch {
-        status.textContent = "Etwas ist schiefgegangen. Bitte versuchen Sie es noch einmal oder schreiben Sie an kontakt@vero-wohnbau.de.";
+        status.textContent = "Etwas ist schiefgegangen. Bitte versuchen Sie es noch einmal oder schreiben Sie an info@vero-wohnbau.de.";
         status.style.color = "#a04040";
       } finally {
         if (button) button.disabled = false;
