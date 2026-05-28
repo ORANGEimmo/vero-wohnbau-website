@@ -21,7 +21,7 @@ export const projekte: Projekt[] = [
     untertitel: "Mein Zuhause am Königssee",
     ort: "Schönau am Königssee",
     status: "In Bau",
-    jahr: "Fertigstellung Q2 2026",
+    jahr: "Fertigstellung Q4 2027",
     hero: "/assets/gut-hirschenlehen-hero.webp",
     gallery: [
       "/assets/gut-hirschenlehen-front.webp",
@@ -38,16 +38,16 @@ export const projekte: Projekt[] = [
       "9 Stellplätze auf 730 m² Grundstück",
     ],
     fakten: [
-      { label: "Adresse", wert: "Waldhauserstraße 29a, 83471 Schönau" },
+      { label: "Standort", wert: "Schönau am Königssee" },
       { label: "Wohneinheiten", wert: "8" },
       { label: "Wohnfläche", wert: "547,02 m²" },
-      { label: "Grundstück", wert: "730 m²" },
+      { label: "Grundstück", wert: "844 m²" },
       { label: "Stellplätze", wert: "9" },
       { label: "Standard", wert: "KfW 40 / QNG" },
-      { label: "Baubeginn", wert: "Q1 2025" },
-      { label: "Fertigstellung", wert: "Q2 2026" },
-      { label: "Kaufpreis", wert: "ab 488.728 € brutto" },
-      { label: "Provision", wert: "3,57% inkl. MwSt" },
+      { label: "Baubeginn", wert: "Q3 2026" },
+      { label: "Fertigstellung", wert: "Q4 2027" },
+      { label: "Kaufpreis", wert: "ab 490.345 €" },
+      { label: "Provision", wert: "Keine" },
     ],
     ausstattung: [
       {
