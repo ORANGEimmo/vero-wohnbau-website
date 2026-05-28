@@ -80,8 +80,6 @@ export const projekte: Projekt[] = [
     hero: "/assets/chalet-hochwald-hero.webp",
     gallery: [
       "/assets/chalet-hochwald-01.webp",
-      "/assets/chalet-hochwald-03.webp",
-      "/assets/chalet-hochwald-02.webp",
     ],
     beschreibung:
       "Ein zurückhaltendes Chalet-Ensemble am Waldrand von Berchtesgaden. Vier Einheiten, je mit eigenem Eingang, Holzfassade und großzügigem Übergang zur umliegenden Natur. Details folgen — wir nehmen uns Zeit, bis das Konzept stimmt.",
