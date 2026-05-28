@@ -76,7 +76,7 @@ export const projekte: Projekt[] = [
     untertitel: "Wohnen am Waldrand",
     ort: "Berchtesgaden",
     status: "In Vorbereitung",
-    jahr: "Geplante Fertigstellung 2027",
+    jahr: "Geplante Fertigstellung Q1 2028",
     hero: "/assets/chalet-hochwald-hero.webp",
     gallery: [
       "/assets/chalet-hochwald-01.webp",
@@ -94,9 +94,12 @@ export const projekte: Projekt[] = [
     fakten: [
       { label: "Standort", wert: "Berchtesgaden" },
       { label: "Wohneinheiten", wert: "4 (geplant)" },
+      { label: "Grundstück", wert: "844 m²" },
       { label: "Bauweise", wert: "Holz-Hybrid" },
-      { label: "Status", wert: "Vorbereitung / Planung" },
-      { label: "Geplante Fertigstellung", wert: "2027" },
+      { label: "Baubeginn", wert: "Q1 2027" },
+      { label: "Fertigstellung", wert: "Q1 2028" },
+      { label: "Kaufpreis", wert: "ab 397.730 €" },
+      { label: "Provision", wert: "Keine" },
     ],
     lage:
       "Berchtesgaden, ruhige Lage am Waldrand. Anbindung an Bundesstraße und Bahnhof in unter 10 Minuten. Detaillierte Lageinformationen folgen mit dem Vertriebsstart.",
