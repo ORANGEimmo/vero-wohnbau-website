@@ -84,8 +84,8 @@ export const projekte: Projekt[] = [
     beschreibung:
       "Ein zurückhaltendes Chalet-Ensemble am Waldrand von Berchtesgaden. Vier Einheiten, je mit eigenem Eingang, Holzfassade und großzügigem Übergang zur umliegenden Natur. Details folgen — wir nehmen uns Zeit, bis das Konzept stimmt.",
     highlights: [
-      "4 Wohneinheiten in zwei Baukörpern",
-      "Holz-Hybrid-Bauweise",
+      "6 Wohneinheiten",
+      "Massiv-Bauweise",
       "Direkte Lage am Waldrand",
       "Nachhaltiger Energiestandard",
     ],
